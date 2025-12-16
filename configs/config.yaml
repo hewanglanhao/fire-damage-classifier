@@ -1,0 +1,28 @@
+project:
+  name: "FireDamageClassification"
+  version: "1.0"
+
+data:
+  path: "data/"
+  batch_size: 32
+  num_workers: 4
+  image_size: 224
+  vocab_size: 5000
+  seq_len: 16
+
+model:
+  num_classes: 5
+  latent_dim: 512
+  method_option: "alignment" # "vae" or "alignment"
+  backbone: "vit_base_patch16_224"
+  use_fine: False
+
+training:
+  epochs: 70
+  lr: 1e-4
+  weight_decay: 1e-3
+  dropout: 0.2
+  drop_path_rate: 0.1 # Added stochastic depth for ViT
+  lambda_cls: 1.0
+  lambda_vae: 0.1
+  lambda_align: 0.1

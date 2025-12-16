@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/root/shared-nvme/fp/src/training/train.py", line 10, in <module>
+    from src.models.method import FireDamageClassifier
+  File "/root/shared-nvme/fp/src/models/method.py", line 3, in <module>
+    import timm
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/__init__.py", line 2, in <module>
+    from .layers import (
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/layers/__init__.py", line 1, in <module>
+    from ._fx import (
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/layers/_fx.py", line 8, in <module>
+    from torchvision.models.feature_extraction import create_feature_extractor as _create_feature_extractor
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/__init__.py", line 10, in <module>
+    from torchvision import _meta_registrations, datasets, io, models, ops, transforms, utils  # usort:skip
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/models/__init__.py", line 2, in <module>
+    from .convnext import *
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/models/convnext.py", line 8, in <module>
+    from ..ops.misc import Conv2dNormActivation, Permute
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/ops/__init__.py", line 23, in <module>
+    from .poolers import MultiScaleRoIAlign
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/ops/poolers.py", line 10, in <module>
+    from .roi_align import roi_align
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torchvision/ops/roi_align.py", line 7, in <module>
+    from torch._dynamo.utils import is_compile_supported
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 3, in <module>
+    from . import convert_frame, eval_frame, resume_execution
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 31, in <module>
+    from torch._dynamo.utils import CompileTimeInstructionCounter
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/_dynamo/utils.py", line 62, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/fx/experimental/symbolic_shapes.py", line 65, in <module>
+    from torch.utils._sympy.functions import (
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/utils/_sympy/functions.py", line 7, in <module>
+    import sympy
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/sympy/__init__.py", line 22, in <module>
+    import mpmath
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/mpmath/__init__.py", line 7, in <module>
+    from .ctx_iv import MPIntervalContext
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/mpmath/ctx_iv.py", line 292, in <module>
+    class ivmpf_constant(ivmpf):
+KeyboardInterrupt

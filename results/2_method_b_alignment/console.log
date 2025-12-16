@@ -1,0 +1,79 @@
+Loaded config: {'data': {'batch_size': 32, 'image_size': 224, 'num_workers': 4, 'path': 'data/', 'seq_len': 50, 'vocab_size': 5000}, 'model': {'backbone': 'vit_base_patch16_224', 'latent_dim': 512, 'method_option': 'alignment', 'num_classes': 5}, 'project': {'name': 'FireDamageClassification', 'version': '1.0'}, 'training': {'drop_path_rate': 0.1, 'dropout': 0.2, 'epochs': 50, 'lambda_align': 0.1, 'lambda_cls': 1.0, 'lambda_vae': 0.1, 'lr': '1e-4', 'weight_decay': '1e-3'}}
+Results will be saved to: results/2_method_b_alignment
+Using device: cuda
+Model Type: method
+Splitting by Region:
+Train Regions: ['GLA', 'VAL', 'MOS', 'CAS', 'MIL', 'POST', 'CRE', 'DIN', 'MON', 'SCU', 'FOR', 'BEU']
+Val Regions: ['BEA', 'AUG', 'ZOG']
+Test Regions: ['CAL', 'FAI', 'DIX']
+Scanning images in data/image for mode train...
+Loaded 5393 samples for mode train
+Scanning images in data/image for mode val...
+Loaded 1316 samples for mode val
+Scanning images in data/image for mode test...
+Loaded 1122 samples for mode test
+Calculating class weights for WeightedRandomSampler...
+Train Class Counts: {1: 204, 0: 2281, 4: 766, 3: 2060, 2: 82}
+Data loaded: Train=5393, Val=1316, Test=1122
+Parameters: 202,522,455
+FLOPs: 35876096512.0
+Starting training loop...
+Batch 0: Loss 3.1286 (Cls: 1.2136) LR: 0.000004
+Batch 10: Loss 2.8399 (Cls: 1.0825) LR: 0.000004
+Batch 20: Loss 2.5894 (Cls: 0.9617) LR: 0.000004
+Batch 30: Loss 2.7093 (Cls: 1.2158) LR: 0.000004
+Batch 40: Loss 2.5612 (Cls: 1.1966) LR: 0.000004
+Batch 50: Loss 2.4343 (Cls: 1.1931) LR: 0.000004
+Batch 60: Loss 2.2903 (Cls: 1.1483) LR: 0.000004
+Batch 70: Loss 2.1845 (Cls: 1.1510) LR: 0.000004
+Batch 80: Loss 2.0809 (Cls: 1.1463) LR: 0.000004
+Batch 90: Loss 1.9880 (Cls: 1.1331) LR: 0.000004
+Batch 100: Loss 1.8503 (Cls: 1.0822) LR: 0.000004
+Batch 110: Loss 1.8619 (Cls: 1.1682) LR: 0.000004
+Batch 120: Loss 1.7771 (Cls: 1.1533) LR: 0.000005
+Batch 130: Loss 1.6653 (Cls: 1.1063) LR: 0.000005
+Batch 140: Loss 1.6585 (Cls: 1.1551) LR: 0.000005
+Batch 150: Loss 1.6589 (Cls: 1.2003) LR: 0.000005
+Batch 160: Loss 1.5334 (Cls: 1.1123) LR: 0.000005
+Epoch 1: Loss 2.1285, Acc 0.2201
+Val Loss 1.5381, Val Acc 0.3085
+New best model saved with Val Acc: 0.3085
+Batch 0: Loss 1.5715 (Cls: 1.1861) LR: 0.000005
+Batch 10: Loss 1.5125 (Cls: 1.1588) LR: 0.000005
+Batch 20: Loss 1.4663 (Cls: 1.1400) LR: 0.000005
+Batch 30: Loss 1.4626 (Cls: 1.1614) LR: 0.000005
+Batch 40: Loss 1.4406 (Cls: 1.1561) LR: 0.000006
+Batch 50: Loss 1.3704 (Cls: 1.1029) LR: 0.000006
+Batch 60: Loss 1.4092 (Cls: 1.1595) LR: 0.000006
+Batch 70: Loss 1.3214 (Cls: 1.0809) LR: 0.000006
+Batch 80: Loss 1.2869 (Cls: 1.0526) LR: 0.000006
+Batch 90: Loss 1.3733 (Cls: 1.1494) LR: 0.000006
+Batch 100: Loss 1.3760 (Cls: 1.1579) LR: 0.000007
+Batch 110: Loss 1.2822 (Cls: 1.0711) LR: 0.000007
+Batch 120: Loss 1.3669 (Cls: 1.1649) LR: 0.000007
+Batch 130: Loss 1.2702 (Cls: 1.0709) LR: 0.000007
+Batch 140: Loss 1.3137 (Cls: 1.1194) LR: 0.000008
+Batch 150: Loss 1.2240 (Cls: 1.0368) LR: 0.000008
+Batch 160: Loss 1.2042 (Cls: 1.0186) LR: 0.000008
+Epoch 2: Loss 1.3605, Acc 0.2307
+Val Loss 1.2371, Val Acc 0.3830
+New best model saved with Val Acc: 0.3830
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/root/shared-nvme/fp/src/training/train.py", line 349, in <module>
+    main(args.config, args.exp_name)
+  File "/root/shared-nvme/fp/src/training/train.py", line 270, in main
+    loss, metrics = train_one_epoch(
+  File "/root/shared-nvme/fp/src/training/train.py", line 144, in train_one_epoch
+    loss.backward()
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/_tensor.py", line 581, in backward
+    torch.autograd.backward(
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/torch/autograd/graph.py", line 825, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 38.00 MiB. GPU 0 has a total capacity of 23.64 GiB of which 31.25 MiB is free. Process 1149511 has 12.19 GiB memory in use. Process 1311166 has 11.41 GiB memory in use. Of the allocated memory 10.41 GiB is allocated by PyTorch, and 550.18 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Batch 0: Loss 1.3607 (Cls: 1.1775) LR: 0.000008

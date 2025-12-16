@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/root/shared-nvme/fp/src/training/train.py", line 10, in <module>
+    from src.models.method import FireDamageClassifier
+  File "/root/shared-nvme/fp/src/models/method.py", line 3, in <module>
+    import timm
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/__init__.py", line 2, in <module>
+    from .layers import (
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/layers/__init__.py", line 39, in <module>
+    from .conv_bn_act import ConvNormAct, ConvNormActAa, ConvBnAct
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/layers/conv_bn_act.py", line 12, in <module>
+    from .create_norm_act import get_norm_act_layer
+  File "/root/miniconda3/envs/fire_damage_cls/lib/python3.10/site-packages/timm/layers/create_norm_act.py", line 28, in <module>
+    from .inplace_abn import InplaceAbn
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 879, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 975, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_data
+KeyboardInterrupt

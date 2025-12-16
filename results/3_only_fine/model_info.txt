@@ -1,0 +1,4 @@
+Model Type: method
+Parameters: 184953999
+FLOPs: 33878552064.0
+Config: {'data': {'batch_size': 32, 'image_size': 224, 'num_workers': 4, 'path': 'data/', 'seq_len': 16, 'vocab_size': 5000}, 'model': {'backbone': 'vit_base_patch16_224', 'latent_dim': 512, 'method_option': 'alignment', 'num_classes': 5, 'use_coarse': False, 'use_fine': True, 'use_image': True}, 'project': {'name': 'FireDamageClassification', 'version': '1.0'}, 'training': {'drop_path_rate': 0.1, 'dropout': 0.2, 'epochs': 70, 'lambda_align': 0.1, 'lambda_cls': 1.0, 'lambda_vae': 0.1, 'lr': '1e-4', 'weight_decay': '1e-3'}}
