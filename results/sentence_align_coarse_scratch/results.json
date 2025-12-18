@@ -1,7 +1,6 @@
 {
-    "test_loss": 1.3377136488755543,
+    "test_loss": 1.351448055770662,
     "test_accuracy": 0.5882352941176471,
-    "best_val_accuracy": 0.6610942249240122,
-    "parameters": 11932103,
+    "parameters": 27636313,
     "flops": "1083166208.0"
 }
