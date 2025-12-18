@@ -1,0 +1,4 @@
+Model Type: method
+Parameters: 11932103
+FLOPs: 1083166208.0
+Config: {'data': {'batch_size': 64, 'image_size': 224, 'num_workers': 4, 'path': 'src/data/', 'seq_len': 16, 'vocab_size': 5000}, 'model': {'align_text_source': 'coarse', 'backbone': 'vit_tiny_patch16_224', 'freeze_sentence_encoder': True, 'fusion_include_coarse': False, 'fusion_include_fine': False, 'fusion_include_image': True, 'latent_dim': 512, 'method_option': 'alignment', 'num_classes': 5, 'sentence_encoder_device': 'cuda', 'sentence_encoder_name': 'train_sentence_encoder/output_coarse', 'sentence_pretrained': False, 'use_coarse': False, 'use_fine': False, 'use_sentence_encoder': True}, 'project': {'name': 'FireDamageClassification', 'version': '1.0'}, 'training': {'align_temperature': 0.07, 'drop_path_rate': 0.1, 'dropout': 0.2, 'epochs': 70, 'lambda_align': 0.1, 'lambda_cls': 1.0, 'lambda_vae': 0.1, 'lr': '1e-4', 'weight_decay': '1e-3'}}

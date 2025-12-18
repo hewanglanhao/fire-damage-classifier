@@ -2,7 +2,7 @@ import os
 import json
 from collections import defaultdict
 
-data_root = "data/image"
+data_root = "data/Image_data"
 # regions = [d for d in os.listdir(data_root) if os.path.isdir(os.path.join(data_root, d)) and len(d) == 3 and d.isupper()]
 # Allow POST (4 letters)
 regions = [d for d in os.listdir(data_root) if os.path.isdir(os.path.join(data_root, d)) and d.isupper()]

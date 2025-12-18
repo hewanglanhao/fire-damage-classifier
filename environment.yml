@@ -18,3 +18,4 @@ dependencies:
   - pip:
     - timm
     - thop
+    - sentence-transformers                                                                                                                                                                                                                                                                                                                                                     

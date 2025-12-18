@@ -131,7 +131,8 @@ class FireDataset(Dataset):
             else torch.tensor([])
         )
 
-        return image, sample["label"], coarse_tokens, fine_tokens
+        # Return both tokenized ids and raw texts (raw texts are lists of Python strings after DataLoader collation)
+        return image, sample["label"], coarse_tokens, fine_tokens, sample["coarse_text"], sample["fine_text"]
 
 
 def create_dataloaders(config):

@@ -103,7 +103,13 @@ def evaluate(model, loader, criterion, device, model_type="method", num_classes=
     total_loss = 0
 
     with torch.no_grad():
-        for imgs, targets, coarse_txt, fine_txt in loader:
+        for batch in loader:
+            if len(batch) == 4:
+                imgs, targets, coarse_txt, fine_txt = batch
+                coarse_text_raw, fine_text_raw = None, None
+            else:
+                imgs, targets, coarse_txt, fine_txt, coarse_text_raw, fine_text_raw = batch
+
             imgs, targets = imgs.to(device), targets.to(device)
             coarse_txt, fine_txt = coarse_txt.to(device), fine_txt.to(device)
 
@@ -112,7 +118,13 @@ def evaluate(model, loader, criterion, device, model_type="method", num_classes=
                 # Pass dummy text/images to criterion if needed, or just outputs
                 loss, _ = criterion(outputs, targets, imgs, coarse_txt, fine_txt)
             else:
-                outputs = model(imgs, coarse_txt, fine_txt)
+                outputs = model(
+                    imgs,
+                    coarse_txt,
+                    fine_txt,
+                    coarse_text_raw=coarse_text_raw,
+                    fine_text_raw=fine_text_raw,
+                )
                 loss, _ = criterion(outputs, targets, imgs, coarse_txt, fine_txt)
 
             total_loss += loss.item()
@@ -128,7 +140,13 @@ def train_one_epoch(
     metrics = ClassificationMetrics(num_classes=num_classes)
     total_loss = 0
 
-    for batch_idx, (imgs, targets, coarse_txt, fine_txt) in enumerate(loader):
+    for batch_idx, batch in enumerate(loader):
+        if len(batch) == 4:
+            imgs, targets, coarse_txt, fine_txt = batch
+            coarse_text_raw, fine_text_raw = None, None
+        else:
+            imgs, targets, coarse_txt, fine_txt, coarse_text_raw, fine_text_raw = batch
+
         imgs, targets = imgs.to(device), targets.to(device)
         coarse_txt, fine_txt = coarse_txt.to(device), fine_txt.to(device)
 
@@ -138,7 +156,13 @@ def train_one_epoch(
             outputs = model(imgs)
             loss, loss_dict = criterion(outputs, targets, imgs, coarse_txt, fine_txt)
         else:
-            outputs = model(imgs, coarse_txt, fine_txt)
+            outputs = model(
+                imgs,
+                coarse_txt,
+                fine_txt,
+                coarse_text_raw=coarse_text_raw,
+                fine_text_raw=fine_text_raw,
+            )
             loss, loss_dict = criterion(outputs, targets, imgs, coarse_txt, fine_txt)
 
         loss.backward()

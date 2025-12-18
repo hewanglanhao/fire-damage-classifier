@@ -1,0 +1,808 @@
+Loaded config: {'data': {'batch_size': 64, 'image_size': 224, 'num_workers': 4, 'path': 'src/data/', 'seq_len': 16, 'vocab_size': 5000}, 'model': {'align_text_source': 'fine', 'backbone': 'vit_tiny_patch16_224', 'freeze_sentence_encoder': True, 'fusion_include_coarse': False, 'fusion_include_fine': False, 'fusion_include_image': True, 'latent_dim': 512, 'method_option': 'alignment', 'num_classes': 5, 'sentence_encoder_device': 'cuda', 'sentence_encoder_name': 'train_sentence_encoder/output_fine', 'sentence_pretrained': False, 'use_coarse': False, 'use_fine': False, 'use_sentence_encoder': True}, 'project': {'name': 'FireDamageClassification', 'version': '1.0'}, 'training': {'align_temperature': 0.07, 'drop_path_rate': 0.1, 'dropout': 0.2, 'epochs': 70, 'lambda_align': 0.1, 'lambda_cls': 1.0, 'lambda_vae': 0.1, 'lr': '1e-4', 'weight_decay': '1e-3'}}
+Results will be saved to: results/sentence_align_fine_scratch
+Using device: cuda
+Model Type: method
+Splitting by Region:
+Train Regions: ['GLA', 'VAL', 'MOS', 'CAS', 'MIL', 'POST', 'CRE', 'DIN', 'MON', 'SCU', 'FOR', 'BEU']
+Val Regions: ['BEA', 'AUG', 'ZOG']
+Test Regions: ['CAL', 'FAI', 'DIX']
+Scanning images in src/data/image for mode train...
+Loaded 5393 samples for mode train
+Scanning images in src/data/image for mode val...
+Loaded 1316 samples for mode val
+Scanning images in src/data/image for mode test...
+Loaded 1122 samples for mode test
+Calculating class weights for WeightedRandomSampler...
+Train Class Counts: {1: 204, 0: 2281, 4: 766, 3: 2060, 2: 82}
+Data loaded: Train=5393, Val=1316, Test=1122
+/root/shared-nvme/fire/src/models/method.py:243: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(ckpt_path, map_location="cpu")
+Parameters: 11,932,103
+FLOPs: 1083166208.0
+Starting training loop...
+Batch 0: Loss 1.8189 (Cls: 1.3880) LR: 0.000004
+Batch 10: Loss 1.6246 (Cls: 1.1876) LR: 0.000004
+Batch 20: Loss 1.5410 (Cls: 1.1136) LR: 0.000004
+Batch 30: Loss 1.6022 (Cls: 1.1826) LR: 0.000004
+Batch 40: Loss 1.6152 (Cls: 1.1859) LR: 0.000004
+Batch 50: Loss 1.5166 (Cls: 1.0922) LR: 0.000004
+Batch 60: Loss 1.5483 (Cls: 1.1230) LR: 0.000004
+Batch 70: Loss 1.5544 (Cls: 1.1250) LR: 0.000004
+Batch 80: Loss 1.5188 (Cls: 1.1013) LR: 0.000004
+Epoch 1: Loss 1.5817, Acc 0.2255
+/root/miniconda3/envs/fire/lib/python3.10/site-packages/torch/nn/modules/transformer.py:502: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647352509/work/aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(
+Val Loss 1.5975, Val Acc 0.2394
+New best model saved with Val Acc: 0.2394
+Batch 0: Loss 1.6064 (Cls: 1.1763) LR: 0.000005
+Batch 10: Loss 1.5268 (Cls: 1.1032) LR: 0.000005
+Batch 20: Loss 1.5456 (Cls: 1.1258) LR: 0.000005
+Batch 30: Loss 1.5433 (Cls: 1.1220) LR: 0.000005
+Batch 40: Loss 1.4931 (Cls: 1.0696) LR: 0.000005
+Batch 50: Loss 1.6230 (Cls: 1.1955) LR: 0.000005
+Batch 60: Loss 1.5070 (Cls: 1.0839) LR: 0.000006
+Batch 70: Loss 1.6202 (Cls: 1.1967) LR: 0.000006
+Batch 80: Loss 1.4856 (Cls: 1.0550) LR: 0.000006
+Epoch 2: Loss 1.5536, Acc 0.2147
+Val Loss 1.5956, Val Acc 0.2234
+Batch 0: Loss 1.5398 (Cls: 1.1101) LR: 0.000006
+Batch 10: Loss 1.6290 (Cls: 1.1997) LR: 0.000006
+Batch 20: Loss 1.5920 (Cls: 1.1678) LR: 0.000007
+Batch 30: Loss 1.6329 (Cls: 1.2036) LR: 0.000007
+Batch 40: Loss 1.4719 (Cls: 1.0517) LR: 0.000007
+Batch 50: Loss 1.5676 (Cls: 1.1347) LR: 0.000008
+Batch 60: Loss 1.5586 (Cls: 1.1311) LR: 0.000008
+Batch 70: Loss 1.5483 (Cls: 1.1195) LR: 0.000008
+Batch 80: Loss 1.5997 (Cls: 1.1773) LR: 0.000009
+Epoch 3: Loss 1.5494, Acc 0.2181
+Val Loss 1.5701, Val Acc 0.3207
+New best model saved with Val Acc: 0.3207
+Batch 0: Loss 1.5331 (Cls: 1.1150) LR: 0.000009
+Batch 10: Loss 1.5417 (Cls: 1.1204) LR: 0.000009
+Batch 20: Loss 1.5428 (Cls: 1.1229) LR: 0.000010
+Batch 30: Loss 1.5170 (Cls: 1.0927) LR: 0.000010
+Batch 40: Loss 1.5236 (Cls: 1.1130) LR: 0.000010
+Batch 50: Loss 1.5573 (Cls: 1.1323) LR: 0.000011
+Batch 60: Loss 1.4972 (Cls: 1.0692) LR: 0.000011
+Batch 70: Loss 1.5058 (Cls: 1.0871) LR: 0.000012
+Batch 80: Loss 1.5151 (Cls: 1.0847) LR: 0.000012
+Epoch 4: Loss 1.5402, Acc 0.2275
+Val Loss 1.5727, Val Acc 0.2850
+Batch 0: Loss 1.5735 (Cls: 1.1519) LR: 0.000012
+Batch 10: Loss 1.5115 (Cls: 1.0923) LR: 0.000013
+Batch 20: Loss 1.5535 (Cls: 1.1297) LR: 0.000013
+Batch 30: Loss 1.4490 (Cls: 1.0332) LR: 0.000014
+Batch 40: Loss 1.5696 (Cls: 1.1501) LR: 0.000014
+Batch 50: Loss 1.5392 (Cls: 1.1216) LR: 0.000015
+Batch 60: Loss 1.5313 (Cls: 1.1091) LR: 0.000015
+Batch 70: Loss 1.4768 (Cls: 1.0567) LR: 0.000016
+Batch 80: Loss 1.4443 (Cls: 1.0238) LR: 0.000017
+Epoch 5: Loss 1.5221, Acc 0.2236
+Val Loss 1.5424, Val Acc 0.4035
+New best model saved with Val Acc: 0.4035
+Batch 0: Loss 1.4997 (Cls: 1.0756) LR: 0.000017
+Batch 10: Loss 1.5455 (Cls: 1.1282) LR: 0.000017
+Batch 20: Loss 1.5367 (Cls: 1.1247) LR: 0.000018
+Batch 30: Loss 1.5155 (Cls: 1.1012) LR: 0.000019
+Batch 40: Loss 1.4898 (Cls: 1.0699) LR: 0.000019
+Batch 50: Loss 1.5216 (Cls: 1.1039) LR: 0.000020
+Batch 60: Loss 1.4833 (Cls: 1.0720) LR: 0.000021
+Batch 70: Loss 1.4980 (Cls: 1.0796) LR: 0.000021
+Batch 80: Loss 1.5211 (Cls: 1.1085) LR: 0.000022
+Epoch 6: Loss 1.5102, Acc 0.2572
+Val Loss 1.4522, Val Acc 0.4574
+New best model saved with Val Acc: 0.4574
+Batch 0: Loss 1.5209 (Cls: 1.1097) LR: 0.000022
+Batch 10: Loss 1.4584 (Cls: 1.0364) LR: 0.000023
+Batch 20: Loss 1.5335 (Cls: 1.1111) LR: 0.000023
+Batch 30: Loss 1.5750 (Cls: 1.1600) LR: 0.000024
+Batch 40: Loss 1.5204 (Cls: 1.1147) LR: 0.000025
+Batch 50: Loss 1.5227 (Cls: 1.1107) LR: 0.000026
+Batch 60: Loss 1.5196 (Cls: 1.1035) LR: 0.000026
+Batch 70: Loss 1.5729 (Cls: 1.1565) LR: 0.000027
+Batch 80: Loss 1.4569 (Cls: 1.0444) LR: 0.000028
+Epoch 7: Loss 1.5022, Acc 0.2817
+Val Loss 1.4223, Val Acc 0.5327
+New best model saved with Val Acc: 0.5327
+Batch 0: Loss 1.5148 (Cls: 1.1017) LR: 0.000028
+Batch 10: Loss 1.4676 (Cls: 1.0425) LR: 0.000029
+Batch 20: Loss 1.5392 (Cls: 1.1224) LR: 0.000030
+Batch 30: Loss 1.5198 (Cls: 1.1084) LR: 0.000030
+Batch 40: Loss 1.5322 (Cls: 1.1193) LR: 0.000031
+Batch 50: Loss 1.4435 (Cls: 1.0312) LR: 0.000032
+Batch 60: Loss 1.4402 (Cls: 1.0289) LR: 0.000033
+Batch 70: Loss 1.4972 (Cls: 1.0850) LR: 0.000033
+Batch 80: Loss 1.4594 (Cls: 1.0457) LR: 0.000034
+Epoch 8: Loss 1.4867, Acc 0.2642
+Val Loss 1.5491, Val Acc 0.3313
+Batch 0: Loss 1.5050 (Cls: 1.0895) LR: 0.000035
+Batch 10: Loss 1.5348 (Cls: 1.1198) LR: 0.000035
+Batch 20: Loss 1.4597 (Cls: 1.0484) LR: 0.000036
+Batch 30: Loss 1.4973 (Cls: 1.0840) LR: 0.000037
+Batch 40: Loss 1.3615 (Cls: 0.9548) LR: 0.000038
+Batch 50: Loss 1.5033 (Cls: 1.0844) LR: 0.000039
+Batch 60: Loss 1.4607 (Cls: 1.0467) LR: 0.000039
+Batch 70: Loss 1.4962 (Cls: 1.0854) LR: 0.000040
+Batch 80: Loss 1.5076 (Cls: 1.1020) LR: 0.000041
+Epoch 9: Loss 1.4728, Acc 0.2867
+Val Loss 1.4542, Val Acc 0.4430
+Batch 0: Loss 1.4145 (Cls: 1.0089) LR: 0.000041
+Batch 10: Loss 1.4090 (Cls: 1.0162) LR: 0.000042
+Batch 20: Loss 1.4346 (Cls: 1.0300) LR: 0.000043
+Batch 30: Loss 1.4728 (Cls: 1.0575) LR: 0.000044
+Batch 40: Loss 1.3393 (Cls: 0.9440) LR: 0.000045
+Batch 50: Loss 1.4761 (Cls: 1.0742) LR: 0.000046
+Batch 60: Loss 1.4907 (Cls: 1.0778) LR: 0.000046
+Batch 70: Loss 1.5308 (Cls: 1.1265) LR: 0.000047
+Batch 80: Loss 1.4205 (Cls: 1.0111) LR: 0.000048
+Epoch 10: Loss 1.4525, Acc 0.3106
+Val Loss 1.4414, Val Acc 0.4825
+Batch 0: Loss 1.4049 (Cls: 0.9995) LR: 0.000049
+Batch 10: Loss 1.4338 (Cls: 1.0350) LR: 0.000049
+Batch 20: Loss 1.4361 (Cls: 1.0332) LR: 0.000050
+Batch 30: Loss 1.4530 (Cls: 1.0567) LR: 0.000051
+Batch 40: Loss 1.4038 (Cls: 0.9946) LR: 0.000052
+Batch 50: Loss 1.4488 (Cls: 1.0452) LR: 0.000053
+Batch 60: Loss 1.4428 (Cls: 1.0428) LR: 0.000054
+Batch 70: Loss 1.4117 (Cls: 1.0111) LR: 0.000054
+Batch 80: Loss 1.3829 (Cls: 0.9813) LR: 0.000055
+Epoch 11: Loss 1.4248, Acc 0.3340
+Val Loss 1.4453, Val Acc 0.5084
+Batch 0: Loss 1.4758 (Cls: 1.0694) LR: 0.000056
+Batch 10: Loss 1.3284 (Cls: 0.9429) LR: 0.000057
+Batch 20: Loss 1.3803 (Cls: 0.9824) LR: 0.000057
+Batch 30: Loss 1.4181 (Cls: 1.0153) LR: 0.000058
+Batch 40: Loss 1.4291 (Cls: 1.0287) LR: 0.000059
+Batch 50: Loss 1.4242 (Cls: 1.0134) LR: 0.000060
+Batch 60: Loss 1.3937 (Cls: 0.9927) LR: 0.000061
+Batch 70: Loss 1.4442 (Cls: 1.0466) LR: 0.000062
+Batch 80: Loss 1.3973 (Cls: 0.9863) LR: 0.000062
+Epoch 12: Loss 1.4176, Acc 0.3479
+Val Loss 1.3971, Val Acc 0.5046
+Batch 0: Loss 1.4524 (Cls: 1.0559) LR: 0.000063
+Batch 10: Loss 1.4307 (Cls: 1.0214) LR: 0.000064
+Batch 20: Loss 1.3762 (Cls: 0.9869) LR: 0.000064
+Batch 30: Loss 1.3807 (Cls: 0.9865) LR: 0.000065
+Batch 40: Loss 1.4480 (Cls: 1.0428) LR: 0.000066
+Batch 50: Loss 1.4492 (Cls: 1.0453) LR: 0.000067
+Batch 60: Loss 1.3938 (Cls: 0.9995) LR: 0.000068
+Batch 70: Loss 1.4765 (Cls: 1.0721) LR: 0.000068
+Batch 80: Loss 1.4215 (Cls: 1.0241) LR: 0.000069
+Epoch 13: Loss 1.4115, Acc 0.3388
+Val Loss 1.5072, Val Acc 0.3663
+Batch 0: Loss 1.3981 (Cls: 1.0062) LR: 0.000070
+Batch 10: Loss 1.3107 (Cls: 0.9256) LR: 0.000070
+Batch 20: Loss 1.4491 (Cls: 1.0497) LR: 0.000071
+Batch 30: Loss 1.3894 (Cls: 0.9879) LR: 0.000072
+Batch 40: Loss 1.4191 (Cls: 1.0137) LR: 0.000073
+Batch 50: Loss 1.3649 (Cls: 0.9663) LR: 0.000074
+Batch 60: Loss 1.4037 (Cls: 1.0173) LR: 0.000074
+Batch 70: Loss 1.3087 (Cls: 0.9377) LR: 0.000075
+Batch 80: Loss 1.4278 (Cls: 1.0329) LR: 0.000076
+Epoch 14: Loss 1.3834, Acc 0.3736
+Val Loss 1.4238, Val Acc 0.4954
+Batch 0: Loss 1.4013 (Cls: 1.0056) LR: 0.000076
+Batch 10: Loss 1.3643 (Cls: 0.9743) LR: 0.000077
+Batch 20: Loss 1.4173 (Cls: 1.0241) LR: 0.000078
+Batch 30: Loss 1.3186 (Cls: 0.9328) LR: 0.000078
+Batch 40: Loss 1.3721 (Cls: 0.9771) LR: 0.000079
+Batch 50: Loss 1.3784 (Cls: 0.9734) LR: 0.000080
+Batch 60: Loss 1.3968 (Cls: 1.0072) LR: 0.000080
+Batch 70: Loss 1.4291 (Cls: 1.0312) LR: 0.000081
+Batch 80: Loss 1.3874 (Cls: 1.0024) LR: 0.000082
+Epoch 15: Loss 1.3708, Acc 0.3785
+Val Loss 1.4025, Val Acc 0.4894
+Batch 0: Loss 1.3888 (Cls: 0.9918) LR: 0.000082
+Batch 10: Loss 1.3887 (Cls: 0.9938) LR: 0.000083
+Batch 20: Loss 1.3614 (Cls: 0.9780) LR: 0.000083
+Batch 30: Loss 1.4077 (Cls: 1.0143) LR: 0.000084
+Batch 40: Loss 1.4099 (Cls: 1.0120) LR: 0.000085
+Batch 50: Loss 1.4515 (Cls: 1.0493) LR: 0.000085
+Batch 60: Loss 1.4186 (Cls: 1.0277) LR: 0.000086
+Batch 70: Loss 1.4038 (Cls: 1.0078) LR: 0.000086
+Batch 80: Loss 1.2810 (Cls: 0.9020) LR: 0.000087
+Epoch 16: Loss 1.3743, Acc 0.3627
+Val Loss 1.3911, Val Acc 0.5372
+New best model saved with Val Acc: 0.5372
+Batch 0: Loss 1.4025 (Cls: 1.0034) LR: 0.000087
+Batch 10: Loss 1.3535 (Cls: 0.9718) LR: 0.000088
+Batch 20: Loss 1.4072 (Cls: 1.0187) LR: 0.000088
+Batch 30: Loss 1.4136 (Cls: 1.0090) LR: 0.000089
+Batch 40: Loss 1.3510 (Cls: 0.9649) LR: 0.000089
+Batch 50: Loss 1.3874 (Cls: 1.0057) LR: 0.000090
+Batch 60: Loss 1.3439 (Cls: 0.9642) LR: 0.000091
+Batch 70: Loss 1.4632 (Cls: 1.0729) LR: 0.000091
+Batch 80: Loss 1.3983 (Cls: 0.9998) LR: 0.000092
+Epoch 17: Loss 1.3651, Acc 0.3948
+Val Loss 1.3786, Val Acc 0.5296
+Batch 0: Loss 1.3416 (Cls: 0.9576) LR: 0.000092
+Batch 10: Loss 1.3691 (Cls: 0.9780) LR: 0.000092
+Batch 20: Loss 1.3298 (Cls: 0.9549) LR: 0.000093
+Batch 30: Loss 1.4023 (Cls: 1.0074) LR: 0.000093
+Batch 40: Loss 1.3615 (Cls: 0.9823) LR: 0.000094
+Batch 50: Loss 1.3469 (Cls: 0.9549) LR: 0.000094
+Batch 60: Loss 1.2667 (Cls: 0.8894) LR: 0.000094
+Batch 70: Loss 1.3023 (Cls: 0.9168) LR: 0.000095
+Batch 80: Loss 1.2903 (Cls: 0.9090) LR: 0.000095
+Epoch 18: Loss 1.3473, Acc 0.4001
+Val Loss 1.3355, Val Acc 0.6147
+New best model saved with Val Acc: 0.6147
+Batch 0: Loss 1.4526 (Cls: 1.0503) LR: 0.000095
+Batch 10: Loss 1.3153 (Cls: 0.9305) LR: 0.000096
+Batch 20: Loss 1.3435 (Cls: 0.9528) LR: 0.000096
+Batch 30: Loss 1.3693 (Cls: 0.9874) LR: 0.000096
+Batch 40: Loss 1.2642 (Cls: 0.9010) LR: 0.000097
+Batch 50: Loss 1.4023 (Cls: 1.0107) LR: 0.000097
+Batch 60: Loss 1.3649 (Cls: 0.9917) LR: 0.000097
+Batch 70: Loss 1.4011 (Cls: 1.0255) LR: 0.000098
+Batch 80: Loss 1.3807 (Cls: 0.9845) LR: 0.000098
+Epoch 19: Loss 1.3543, Acc 0.3887
+Val Loss 1.5119, Val Acc 0.3913
+Batch 0: Loss 1.2698 (Cls: 0.8941) LR: 0.000098
+Batch 10: Loss 1.3845 (Cls: 0.9963) LR: 0.000098
+Batch 20: Loss 1.2682 (Cls: 0.9060) LR: 0.000098
+Batch 30: Loss 1.4567 (Cls: 1.0593) LR: 0.000099
+Batch 40: Loss 1.2909 (Cls: 0.9163) LR: 0.000099
+Batch 50: Loss 1.2630 (Cls: 0.8859) LR: 0.000099
+Batch 60: Loss 1.2982 (Cls: 0.9258) LR: 0.000099
+Batch 70: Loss 1.3814 (Cls: 0.9984) LR: 0.000099
+Batch 80: Loss 1.2935 (Cls: 0.9160) LR: 0.000099
+Epoch 20: Loss 1.3274, Acc 0.4181
+Val Loss 1.4236, Val Acc 0.4840
+Batch 0: Loss 1.2635 (Cls: 0.8943) LR: 0.000099
+Batch 10: Loss 1.3360 (Cls: 0.9524) LR: 0.000100
+Batch 20: Loss 1.2911 (Cls: 0.9257) LR: 0.000100
+Batch 30: Loss 1.3757 (Cls: 0.9861) LR: 0.000100
+Batch 40: Loss 1.4091 (Cls: 1.0271) LR: 0.000100
+Batch 50: Loss 1.3502 (Cls: 0.9606) LR: 0.000100
+Batch 60: Loss 1.3454 (Cls: 0.9673) LR: 0.000100
+Batch 70: Loss 1.4174 (Cls: 1.0203) LR: 0.000100
+Batch 80: Loss 1.4665 (Cls: 1.0674) LR: 0.000100
+Epoch 21: Loss 1.3397, Acc 0.4129
+Val Loss 1.4169, Val Acc 0.5258
+Batch 0: Loss 1.2619 (Cls: 0.8939) LR: 0.000100
+Batch 10: Loss 1.2637 (Cls: 0.9015) LR: 0.000100
+Batch 20: Loss 1.2177 (Cls: 0.8478) LR: 0.000100
+Batch 30: Loss 1.3518 (Cls: 0.9599) LR: 0.000100
+Batch 40: Loss 1.3824 (Cls: 0.9969) LR: 0.000100
+Batch 50: Loss 1.3284 (Cls: 0.9570) LR: 0.000100
+Batch 60: Loss 1.3443 (Cls: 0.9704) LR: 0.000100
+Batch 70: Loss 1.4016 (Cls: 1.0172) LR: 0.000100
+Batch 80: Loss 1.3969 (Cls: 1.0092) LR: 0.000100
+Epoch 22: Loss 1.3259, Acc 0.4128
+Val Loss 1.4511, Val Acc 0.4468
+Batch 0: Loss 1.3615 (Cls: 0.9841) LR: 0.000100
+Batch 10: Loss 1.4044 (Cls: 1.0232) LR: 0.000100
+Batch 20: Loss 1.2251 (Cls: 0.8633) LR: 0.000100
+Batch 30: Loss 1.2307 (Cls: 0.8681) LR: 0.000100
+Batch 40: Loss 1.2796 (Cls: 0.9146) LR: 0.000100
+Batch 50: Loss 1.3030 (Cls: 0.9353) LR: 0.000100
+Batch 60: Loss 1.3931 (Cls: 1.0107) LR: 0.000100
+Batch 70: Loss 1.3301 (Cls: 0.9567) LR: 0.000100
+Batch 80: Loss 1.3118 (Cls: 0.9482) LR: 0.000100
+Epoch 23: Loss 1.3197, Acc 0.4239
+Val Loss 1.3458, Val Acc 0.5661
+Batch 0: Loss 1.1857 (Cls: 0.8289) LR: 0.000100
+Batch 10: Loss 1.4033 (Cls: 1.0150) LR: 0.000100
+Batch 20: Loss 1.3107 (Cls: 0.9504) LR: 0.000099
+Batch 30: Loss 1.3162 (Cls: 0.9479) LR: 0.000099
+Batch 40: Loss 1.2703 (Cls: 0.8897) LR: 0.000099
+Batch 50: Loss 1.2787 (Cls: 0.9030) LR: 0.000099
+Batch 60: Loss 1.3748 (Cls: 0.9903) LR: 0.000099
+Batch 70: Loss 1.2582 (Cls: 0.9006) LR: 0.000099
+Batch 80: Loss 1.2205 (Cls: 0.8590) LR: 0.000099
+Epoch 24: Loss 1.3211, Acc 0.4246
+Val Loss 1.3526, Val Acc 0.5578
+Batch 0: Loss 1.3932 (Cls: 0.9988) LR: 0.000099
+Batch 10: Loss 1.3419 (Cls: 0.9627) LR: 0.000099
+Batch 20: Loss 1.3314 (Cls: 0.9537) LR: 0.000099
+Batch 30: Loss 1.2307 (Cls: 0.8659) LR: 0.000099
+Batch 40: Loss 1.3090 (Cls: 0.9321) LR: 0.000099
+Batch 50: Loss 1.2250 (Cls: 0.8600) LR: 0.000099
+Batch 60: Loss 1.2526 (Cls: 0.8807) LR: 0.000099
+Batch 70: Loss 1.2140 (Cls: 0.8492) LR: 0.000098
+Batch 80: Loss 1.3056 (Cls: 0.9330) LR: 0.000098
+Epoch 25: Loss 1.3011, Acc 0.4393
+Val Loss 1.2467, Val Acc 0.6512
+New best model saved with Val Acc: 0.6512
+Batch 0: Loss 1.3768 (Cls: 1.0016) LR: 0.000098
+Batch 10: Loss 1.3983 (Cls: 1.0164) LR: 0.000098
+Batch 20: Loss 1.3125 (Cls: 0.9398) LR: 0.000098
+Batch 30: Loss 1.3139 (Cls: 0.9341) LR: 0.000098
+Batch 40: Loss 1.3189 (Cls: 0.9469) LR: 0.000098
+Batch 50: Loss 1.2048 (Cls: 0.8492) LR: 0.000098
+Batch 60: Loss 1.2407 (Cls: 0.8780) LR: 0.000098
+Batch 70: Loss 1.3492 (Cls: 0.9759) LR: 0.000098
+Batch 80: Loss 1.4172 (Cls: 1.0311) LR: 0.000097
+Epoch 26: Loss 1.3014, Acc 0.4430
+Val Loss 1.2437, Val Acc 0.6596
+New best model saved with Val Acc: 0.6596
+Batch 0: Loss 1.3917 (Cls: 1.0071) LR: 0.000097
+Batch 10: Loss 1.3491 (Cls: 0.9662) LR: 0.000097
+Batch 20: Loss 1.3430 (Cls: 0.9619) LR: 0.000097
+Batch 30: Loss 1.2628 (Cls: 0.8904) LR: 0.000097
+Batch 40: Loss 1.3195 (Cls: 0.9503) LR: 0.000097
+Batch 50: Loss 1.2981 (Cls: 0.9308) LR: 0.000097
+Batch 60: Loss 1.2802 (Cls: 0.9181) LR: 0.000097
+Batch 70: Loss 1.3434 (Cls: 0.9572) LR: 0.000097
+Batch 80: Loss 1.3479 (Cls: 0.9707) LR: 0.000096
+Epoch 27: Loss 1.3132, Acc 0.4395
+Val Loss 1.3786, Val Acc 0.5266
+Batch 0: Loss 1.2971 (Cls: 0.9245) LR: 0.000096
+Batch 10: Loss 1.3347 (Cls: 0.9600) LR: 0.000096
+Batch 20: Loss 1.2286 (Cls: 0.8761) LR: 0.000096
+Batch 30: Loss 1.4391 (Cls: 1.0326) LR: 0.000096
+Batch 40: Loss 1.3070 (Cls: 0.9419) LR: 0.000096
+Batch 50: Loss 1.3265 (Cls: 0.9434) LR: 0.000096
+Batch 60: Loss 1.4130 (Cls: 1.0420) LR: 0.000095
+Batch 70: Loss 1.3361 (Cls: 0.9555) LR: 0.000095
+Batch 80: Loss 1.2428 (Cls: 0.8663) LR: 0.000095
+Epoch 28: Loss 1.2981, Acc 0.4402
+Val Loss 1.3701, Val Acc 0.5426
+Batch 0: Loss 1.3524 (Cls: 0.9769) LR: 0.000095
+Batch 10: Loss 1.3018 (Cls: 0.9384) LR: 0.000095
+Batch 20: Loss 1.2847 (Cls: 0.9190) LR: 0.000095
+Batch 30: Loss 1.3528 (Cls: 0.9804) LR: 0.000095
+Batch 40: Loss 1.4096 (Cls: 1.0166) LR: 0.000094
+Batch 50: Loss 1.2842 (Cls: 0.9182) LR: 0.000094
+Batch 60: Loss 1.1870 (Cls: 0.8303) LR: 0.000094
+Batch 70: Loss 1.2384 (Cls: 0.8849) LR: 0.000094
+Batch 80: Loss 1.1486 (Cls: 0.7972) LR: 0.000094
+Epoch 29: Loss 1.2877, Acc 0.4621
+Val Loss 1.4089, Val Acc 0.5243
+Batch 0: Loss 1.3635 (Cls: 0.9923) LR: 0.000094
+Batch 10: Loss 1.1879 (Cls: 0.8230) LR: 0.000093
+Batch 20: Loss 1.4084 (Cls: 1.0280) LR: 0.000093
+Batch 30: Loss 1.2441 (Cls: 0.8842) LR: 0.000093
+Batch 40: Loss 1.3323 (Cls: 0.9508) LR: 0.000093
+Batch 50: Loss 1.2337 (Cls: 0.8751) LR: 0.000093
+Batch 60: Loss 1.2565 (Cls: 0.8862) LR: 0.000092
+Batch 70: Loss 1.2888 (Cls: 0.9184) LR: 0.000092
+Batch 80: Loss 1.2923 (Cls: 0.9164) LR: 0.000092
+Epoch 30: Loss 1.2923, Acc 0.4528
+Val Loss 1.4742, Val Acc 0.4096
+Batch 0: Loss 1.2786 (Cls: 0.9092) LR: 0.000092
+Batch 10: Loss 1.3716 (Cls: 1.0118) LR: 0.000092
+Batch 20: Loss 1.3221 (Cls: 0.9566) LR: 0.000091
+Batch 30: Loss 1.2898 (Cls: 0.9173) LR: 0.000091
+Batch 40: Loss 1.3242 (Cls: 0.9538) LR: 0.000091
+Batch 50: Loss 1.3293 (Cls: 0.9689) LR: 0.000091
+Batch 60: Loss 1.2717 (Cls: 0.9117) LR: 0.000091
+Batch 70: Loss 1.3097 (Cls: 0.9363) LR: 0.000090
+Batch 80: Loss 1.3378 (Cls: 0.9573) LR: 0.000090
+Epoch 31: Loss 1.2904, Acc 0.4502
+Val Loss 1.2725, Val Acc 0.6163
+Batch 0: Loss 1.2442 (Cls: 0.8837) LR: 0.000090
+Batch 10: Loss 1.3081 (Cls: 0.9445) LR: 0.000090
+Batch 20: Loss 1.2743 (Cls: 0.9006) LR: 0.000090
+Batch 30: Loss 1.2924 (Cls: 0.9320) LR: 0.000089
+Batch 40: Loss 1.1832 (Cls: 0.8354) LR: 0.000089
+Batch 50: Loss 1.2883 (Cls: 0.9223) LR: 0.000089
+Batch 60: Loss 1.2804 (Cls: 0.9064) LR: 0.000089
+Batch 70: Loss 1.2915 (Cls: 0.9309) LR: 0.000088
+Batch 80: Loss 1.2691 (Cls: 0.8974) LR: 0.000088
+Epoch 32: Loss 1.2734, Acc 0.4790
+Val Loss 1.2809, Val Acc 0.6018
+Batch 0: Loss 1.2793 (Cls: 0.9054) LR: 0.000088
+Batch 10: Loss 1.2598 (Cls: 0.8909) LR: 0.000088
+Batch 20: Loss 1.3056 (Cls: 0.9432) LR: 0.000088
+Batch 30: Loss 1.2198 (Cls: 0.8536) LR: 0.000087
+Batch 40: Loss 1.2789 (Cls: 0.9193) LR: 0.000087
+Batch 50: Loss 1.2452 (Cls: 0.8851) LR: 0.000087
+Batch 60: Loss 1.2796 (Cls: 0.9135) LR: 0.000087
+Batch 70: Loss 1.2239 (Cls: 0.8610) LR: 0.000086
+Batch 80: Loss 1.2920 (Cls: 0.9320) LR: 0.000086
+Epoch 33: Loss 1.2631, Acc 0.4749
+Val Loss 1.3388, Val Acc 0.5509
+Batch 0: Loss 1.3093 (Cls: 0.9535) LR: 0.000086
+Batch 10: Loss 1.4339 (Cls: 1.0557) LR: 0.000086
+Batch 20: Loss 1.2650 (Cls: 0.9022) LR: 0.000085
+Batch 30: Loss 1.3539 (Cls: 0.9787) LR: 0.000085
+Batch 40: Loss 1.2611 (Cls: 0.8961) LR: 0.000085
+Batch 50: Loss 1.3921 (Cls: 1.0119) LR: 0.000085
+Batch 60: Loss 1.2606 (Cls: 0.8951) LR: 0.000084
+Batch 70: Loss 1.2243 (Cls: 0.8680) LR: 0.000084
+Batch 80: Loss 1.1348 (Cls: 0.7886) LR: 0.000084
+Epoch 34: Loss 1.2713, Acc 0.4775
+Val Loss 1.2646, Val Acc 0.6231
+Batch 0: Loss 1.2465 (Cls: 0.8691) LR: 0.000084
+Batch 10: Loss 1.3600 (Cls: 0.9801) LR: 0.000083
+Batch 20: Loss 1.1546 (Cls: 0.7974) LR: 0.000083
+Batch 30: Loss 1.1668 (Cls: 0.8081) LR: 0.000083
+Batch 40: Loss 1.2403 (Cls: 0.8830) LR: 0.000082
+Batch 50: Loss 1.1339 (Cls: 0.7855) LR: 0.000082
+Batch 60: Loss 1.2748 (Cls: 0.9037) LR: 0.000082
+Batch 70: Loss 1.2708 (Cls: 0.9086) LR: 0.000082
+Batch 80: Loss 1.2480 (Cls: 0.8844) LR: 0.000081
+Epoch 35: Loss 1.2522, Acc 0.4892
+Val Loss 1.3791, Val Acc 0.5167
+Batch 0: Loss 1.2698 (Cls: 0.9080) LR: 0.000081
+Batch 10: Loss 1.3150 (Cls: 0.9345) LR: 0.000081
+Batch 20: Loss 1.2423 (Cls: 0.8825) LR: 0.000081
+Batch 30: Loss 1.2824 (Cls: 0.9203) LR: 0.000080
+Batch 40: Loss 1.1282 (Cls: 0.7796) LR: 0.000080
+Batch 50: Loss 1.2535 (Cls: 0.8870) LR: 0.000080
+Batch 60: Loss 1.3166 (Cls: 0.9512) LR: 0.000079
+Batch 70: Loss 1.2319 (Cls: 0.8776) LR: 0.000079
+Batch 80: Loss 1.2280 (Cls: 0.8776) LR: 0.000079
+Epoch 36: Loss 1.2423, Acc 0.4929
+Val Loss 1.3424, Val Acc 0.5319
+Batch 0: Loss 1.1666 (Cls: 0.8162) LR: 0.000079
+Batch 10: Loss 1.3146 (Cls: 0.9575) LR: 0.000078
+Batch 20: Loss 1.2196 (Cls: 0.8638) LR: 0.000078
+Batch 30: Loss 1.2925 (Cls: 0.9220) LR: 0.000078
+Batch 40: Loss 1.2500 (Cls: 0.8866) LR: 0.000077
+Batch 50: Loss 1.4017 (Cls: 1.0326) LR: 0.000077
+Batch 60: Loss 1.1917 (Cls: 0.8440) LR: 0.000077
+Batch 70: Loss 1.2478 (Cls: 0.8922) LR: 0.000076
+Batch 80: Loss 1.2550 (Cls: 0.8874) LR: 0.000076
+Epoch 37: Loss 1.2565, Acc 0.4853
+Val Loss 1.2629, Val Acc 0.6201
+Batch 0: Loss 1.1701 (Cls: 0.8233) LR: 0.000076
+Batch 10: Loss 1.2430 (Cls: 0.8858) LR: 0.000076
+Batch 20: Loss 1.1532 (Cls: 0.8053) LR: 0.000075
+Batch 30: Loss 1.2356 (Cls: 0.8615) LR: 0.000075
+Batch 40: Loss 1.2261 (Cls: 0.8765) LR: 0.000075
+Batch 50: Loss 1.2518 (Cls: 0.8774) LR: 0.000074
+Batch 60: Loss 1.2150 (Cls: 0.8600) LR: 0.000074
+Batch 70: Loss 1.2785 (Cls: 0.8962) LR: 0.000074
+Batch 80: Loss 1.2335 (Cls: 0.8787) LR: 0.000073
+Epoch 38: Loss 1.2384, Acc 0.4990
+Val Loss 1.3206, Val Acc 0.5486
+Batch 0: Loss 1.2825 (Cls: 0.9167) LR: 0.000073
+Batch 10: Loss 1.3019 (Cls: 0.9252) LR: 0.000073
+Batch 20: Loss 1.1971 (Cls: 0.8503) LR: 0.000072
+Batch 30: Loss 1.2115 (Cls: 0.8602) LR: 0.000072
+Batch 40: Loss 1.2090 (Cls: 0.8494) LR: 0.000072
+Batch 50: Loss 1.3027 (Cls: 0.9370) LR: 0.000071
+Batch 60: Loss 1.2247 (Cls: 0.8690) LR: 0.000071
+Batch 70: Loss 1.3693 (Cls: 0.9907) LR: 0.000071
+Batch 80: Loss 1.2255 (Cls: 0.8709) LR: 0.000070
+Epoch 39: Loss 1.2503, Acc 0.4971
+Val Loss 1.3243, Val Acc 0.5494
+Batch 0: Loss 1.2233 (Cls: 0.8637) LR: 0.000070
+Batch 10: Loss 1.2148 (Cls: 0.8773) LR: 0.000070
+Batch 20: Loss 1.3003 (Cls: 0.9188) LR: 0.000069
+Batch 30: Loss 1.2721 (Cls: 0.8994) LR: 0.000069
+Batch 40: Loss 1.2539 (Cls: 0.9021) LR: 0.000069
+Batch 50: Loss 1.2012 (Cls: 0.8496) LR: 0.000068
+Batch 60: Loss 1.2738 (Cls: 0.9106) LR: 0.000068
+Batch 70: Loss 1.1680 (Cls: 0.8300) LR: 0.000068
+Batch 80: Loss 1.2193 (Cls: 0.8643) LR: 0.000067
+Epoch 40: Loss 1.2091, Acc 0.5227
+Val Loss 1.3955, Val Acc 0.4909
+Batch 0: Loss 1.2944 (Cls: 0.9229) LR: 0.000067
+Batch 10: Loss 1.3561 (Cls: 0.9651) LR: 0.000067
+Batch 20: Loss 1.1400 (Cls: 0.7886) LR: 0.000066
+Batch 30: Loss 1.0505 (Cls: 0.7211) LR: 0.000066
+Batch 40: Loss 1.3137 (Cls: 0.9446) LR: 0.000066
+Batch 50: Loss 1.1406 (Cls: 0.7954) LR: 0.000065
+Batch 60: Loss 1.1182 (Cls: 0.7621) LR: 0.000065
+Batch 70: Loss 1.2983 (Cls: 0.9335) LR: 0.000065
+Batch 80: Loss 1.2980 (Cls: 0.9405) LR: 0.000064
+Epoch 41: Loss 1.2197, Acc 0.5118
+Val Loss 1.3082, Val Acc 0.5775
+Batch 0: Loss 1.3595 (Cls: 0.9900) LR: 0.000064
+Batch 10: Loss 1.2039 (Cls: 0.8480) LR: 0.000064
+Batch 20: Loss 1.2895 (Cls: 0.9224) LR: 0.000063
+Batch 30: Loss 1.2564 (Cls: 0.9021) LR: 0.000063
+Batch 40: Loss 1.2329 (Cls: 0.8875) LR: 0.000063
+Batch 50: Loss 1.2505 (Cls: 0.8911) LR: 0.000062
+Batch 60: Loss 1.2825 (Cls: 0.9353) LR: 0.000062
+Batch 70: Loss 1.2053 (Cls: 0.8613) LR: 0.000062
+Batch 80: Loss 1.1820 (Cls: 0.8297) LR: 0.000061
+Epoch 42: Loss 1.2273, Acc 0.5155
+Val Loss 1.3616, Val Acc 0.5342
+Batch 0: Loss 1.2631 (Cls: 0.9077) LR: 0.000061
+Batch 10: Loss 1.2711 (Cls: 0.9085) LR: 0.000061
+Batch 20: Loss 1.1452 (Cls: 0.7970) LR: 0.000060
+Batch 30: Loss 1.1840 (Cls: 0.8337) LR: 0.000060
+Batch 40: Loss 1.2914 (Cls: 0.9450) LR: 0.000060
+Batch 50: Loss 1.1714 (Cls: 0.8308) LR: 0.000059
+Batch 60: Loss 1.3212 (Cls: 0.9648) LR: 0.000059
+Batch 70: Loss 1.1273 (Cls: 0.7839) LR: 0.000058
+Batch 80: Loss 1.1352 (Cls: 0.7921) LR: 0.000058
+Epoch 43: Loss 1.2162, Acc 0.5190
+Val Loss 1.3893, Val Acc 0.5114
+Batch 0: Loss 1.2199 (Cls: 0.8641) LR: 0.000058
+Batch 10: Loss 1.1225 (Cls: 0.7844) LR: 0.000058
+Batch 20: Loss 1.1839 (Cls: 0.8431) LR: 0.000057
+Batch 30: Loss 1.2488 (Cls: 0.8978) LR: 0.000057
+Batch 40: Loss 1.1677 (Cls: 0.8206) LR: 0.000056
+Batch 50: Loss 1.3575 (Cls: 0.9711) LR: 0.000056
+Batch 60: Loss 1.2160 (Cls: 0.8548) LR: 0.000056
+Batch 70: Loss 1.1315 (Cls: 0.7881) LR: 0.000055
+Batch 80: Loss 1.2590 (Cls: 0.9000) LR: 0.000055
+Epoch 44: Loss 1.2078, Acc 0.5238
+Val Loss 1.2714, Val Acc 0.6155
+Batch 0: Loss 1.2394 (Cls: 0.8938) LR: 0.000055
+Batch 10: Loss 1.1070 (Cls: 0.7708) LR: 0.000054
+Batch 20: Loss 1.2313 (Cls: 0.8774) LR: 0.000054
+Batch 30: Loss 1.2916 (Cls: 0.9358) LR: 0.000054
+Batch 40: Loss 1.1489 (Cls: 0.8033) LR: 0.000053
+Batch 50: Loss 1.2375 (Cls: 0.8782) LR: 0.000053
+Batch 60: Loss 1.1843 (Cls: 0.8320) LR: 0.000052
+Batch 70: Loss 1.2489 (Cls: 0.8795) LR: 0.000052
+Batch 80: Loss 1.1687 (Cls: 0.8341) LR: 0.000052
+Epoch 45: Loss 1.1921, Acc 0.5483
+Val Loss 1.3086, Val Acc 0.5745
+Batch 0: Loss 1.2437 (Cls: 0.8815) LR: 0.000052
+Batch 10: Loss 1.2119 (Cls: 0.8674) LR: 0.000051
+Batch 20: Loss 1.1322 (Cls: 0.7692) LR: 0.000051
+Batch 30: Loss 1.2380 (Cls: 0.8871) LR: 0.000050
+Batch 40: Loss 1.1445 (Cls: 0.8095) LR: 0.000050
+Batch 50: Loss 1.1588 (Cls: 0.8086) LR: 0.000050
+Batch 60: Loss 1.0510 (Cls: 0.7249) LR: 0.000049
+Batch 70: Loss 1.1190 (Cls: 0.7905) LR: 0.000049
+Batch 80: Loss 1.1849 (Cls: 0.8435) LR: 0.000049
+Epoch 46: Loss 1.2028, Acc 0.5405
+Val Loss 1.3441, Val Acc 0.5410
+Batch 0: Loss 1.1207 (Cls: 0.7794) LR: 0.000048
+Batch 10: Loss 1.1636 (Cls: 0.8147) LR: 0.000048
+Batch 20: Loss 1.1043 (Cls: 0.7534) LR: 0.000048
+Batch 30: Loss 1.1786 (Cls: 0.8222) LR: 0.000047
+Batch 40: Loss 1.2396 (Cls: 0.8869) LR: 0.000047
+Batch 50: Loss 1.3244 (Cls: 0.9625) LR: 0.000046
+Batch 60: Loss 1.1915 (Cls: 0.8532) LR: 0.000046
+Batch 70: Loss 1.1203 (Cls: 0.7862) LR: 0.000046
+Batch 80: Loss 1.1435 (Cls: 0.8006) LR: 0.000045
+Epoch 47: Loss 1.1816, Acc 0.5578
+Val Loss 1.2972, Val Acc 0.5775
+Batch 0: Loss 1.0410 (Cls: 0.7179) LR: 0.000045
+Batch 10: Loss 1.0803 (Cls: 0.7496) LR: 0.000045
+Batch 20: Loss 1.1296 (Cls: 0.7907) LR: 0.000044
+Batch 30: Loss 1.2332 (Cls: 0.8690) LR: 0.000044
+Batch 40: Loss 1.1004 (Cls: 0.7699) LR: 0.000044
+Batch 50: Loss 1.1462 (Cls: 0.8002) LR: 0.000043
+Batch 60: Loss 1.0913 (Cls: 0.7560) LR: 0.000043
+Batch 70: Loss 1.1873 (Cls: 0.8337) LR: 0.000043
+Batch 80: Loss 1.0852 (Cls: 0.7485) LR: 0.000042
+Epoch 48: Loss 1.1754, Acc 0.5559
+Val Loss 1.3419, Val Acc 0.5631
+Batch 0: Loss 1.2336 (Cls: 0.8910) LR: 0.000042
+Batch 10: Loss 1.2211 (Cls: 0.8613) LR: 0.000042
+Batch 20: Loss 1.1015 (Cls: 0.7761) LR: 0.000041
+Batch 30: Loss 1.1288 (Cls: 0.7853) LR: 0.000041
+Batch 40: Loss 1.2579 (Cls: 0.9011) LR: 0.000040
+Batch 50: Loss 1.1741 (Cls: 0.8260) LR: 0.000040
+Batch 60: Loss 1.2211 (Cls: 0.8774) LR: 0.000040
+Batch 70: Loss 1.1908 (Cls: 0.8309) LR: 0.000039
+Batch 80: Loss 1.0552 (Cls: 0.7354) LR: 0.000039
+Epoch 49: Loss 1.1627, Acc 0.5657
+Val Loss 1.2988, Val Acc 0.5699
+Batch 0: Loss 1.1418 (Cls: 0.8145) LR: 0.000039
+Batch 10: Loss 1.1501 (Cls: 0.8192) LR: 0.000038
+Batch 20: Loss 1.2054 (Cls: 0.8524) LR: 0.000038
+Batch 30: Loss 1.2092 (Cls: 0.8649) LR: 0.000038
+Batch 40: Loss 1.2475 (Cls: 0.8898) LR: 0.000037
+Batch 50: Loss 1.1392 (Cls: 0.8019) LR: 0.000037
+Batch 60: Loss 1.1685 (Cls: 0.8289) LR: 0.000037
+Batch 70: Loss 1.3107 (Cls: 0.9675) LR: 0.000036
+Batch 80: Loss 1.1001 (Cls: 0.7732) LR: 0.000036
+Epoch 50: Loss 1.1597, Acc 0.5748
+Val Loss 1.3139, Val Acc 0.5570
+Batch 0: Loss 1.2656 (Cls: 0.9225) LR: 0.000036
+Batch 10: Loss 1.1862 (Cls: 0.8388) LR: 0.000035
+Batch 20: Loss 1.1243 (Cls: 0.7822) LR: 0.000035
+Batch 30: Loss 1.1993 (Cls: 0.8529) LR: 0.000035
+Batch 40: Loss 1.1381 (Cls: 0.7948) LR: 0.000034
+Batch 50: Loss 1.1422 (Cls: 0.8086) LR: 0.000034
+Batch 60: Loss 1.1286 (Cls: 0.7908) LR: 0.000034
+Batch 70: Loss 1.0797 (Cls: 0.7535) LR: 0.000033
+Batch 80: Loss 1.1361 (Cls: 0.7978) LR: 0.000033
+Epoch 51: Loss 1.1709, Acc 0.5648
+Val Loss 1.2319, Val Acc 0.6360
+Batch 0: Loss 1.2018 (Cls: 0.8550) LR: 0.000033
+Batch 10: Loss 1.2262 (Cls: 0.8807) LR: 0.000032
+Batch 20: Loss 1.0672 (Cls: 0.7394) LR: 0.000032
+Batch 30: Loss 1.1239 (Cls: 0.7913) LR: 0.000032
+Batch 40: Loss 1.2754 (Cls: 0.9182) LR: 0.000031
+Batch 50: Loss 1.1527 (Cls: 0.8051) LR: 0.000031
+Batch 60: Loss 1.2382 (Cls: 0.8779) LR: 0.000031
+Batch 70: Loss 1.3493 (Cls: 0.9818) LR: 0.000030
+Batch 80: Loss 1.1598 (Cls: 0.8131) LR: 0.000030
+Epoch 52: Loss 1.1470, Acc 0.5811
+Val Loss 1.2187, Val Acc 0.6429
+Batch 0: Loss 1.1792 (Cls: 0.8359) LR: 0.000030
+Batch 10: Loss 1.3412 (Cls: 0.9752) LR: 0.000029
+Batch 20: Loss 1.1478 (Cls: 0.8130) LR: 0.000029
+Batch 30: Loss 1.0848 (Cls: 0.7454) LR: 0.000029
+Batch 40: Loss 1.1619 (Cls: 0.8133) LR: 0.000028
+Batch 50: Loss 1.1533 (Cls: 0.8115) LR: 0.000028
+Batch 60: Loss 1.2463 (Cls: 0.8983) LR: 0.000028
+Batch 70: Loss 1.1178 (Cls: 0.7811) LR: 0.000027
+Batch 80: Loss 1.1800 (Cls: 0.8478) LR: 0.000027
+Epoch 53: Loss 1.1514, Acc 0.5819
+Val Loss 1.2939, Val Acc 0.5661
+Batch 0: Loss 1.1015 (Cls: 0.7647) LR: 0.000027
+Batch 10: Loss 1.0267 (Cls: 0.6996) LR: 0.000026
+Batch 20: Loss 1.2224 (Cls: 0.8734) LR: 0.000026
+Batch 30: Loss 1.1414 (Cls: 0.7960) LR: 0.000026
+Batch 40: Loss 1.0961 (Cls: 0.7617) LR: 0.000025
+Batch 50: Loss 1.1148 (Cls: 0.7861) LR: 0.000025
+Batch 60: Loss 1.1682 (Cls: 0.8213) LR: 0.000025
+Batch 70: Loss 1.1416 (Cls: 0.8047) LR: 0.000025
+Batch 80: Loss 1.1494 (Cls: 0.8027) LR: 0.000024
+Epoch 54: Loss 1.1266, Acc 0.5943
+Val Loss 1.3720, Val Acc 0.5114
+Batch 0: Loss 1.1273 (Cls: 0.7852) LR: 0.000024
+Batch 10: Loss 1.1674 (Cls: 0.8205) LR: 0.000024
+Batch 20: Loss 1.1104 (Cls: 0.7775) LR: 0.000023
+Batch 30: Loss 1.1546 (Cls: 0.8093) LR: 0.000023
+Batch 40: Loss 1.2915 (Cls: 0.9307) LR: 0.000023
+Batch 50: Loss 1.2097 (Cls: 0.8680) LR: 0.000022
+Batch 60: Loss 1.0965 (Cls: 0.7647) LR: 0.000022
+Batch 70: Loss 1.1041 (Cls: 0.7717) LR: 0.000022
+Batch 80: Loss 1.0202 (Cls: 0.6802) LR: 0.000021
+Epoch 55: Loss 1.1427, Acc 0.5802
+Val Loss 1.3330, Val Acc 0.5881
+Batch 0: Loss 1.3075 (Cls: 0.9592) LR: 0.000021
+Batch 10: Loss 1.1302 (Cls: 0.7880) LR: 0.000021
+Batch 20: Loss 1.1396 (Cls: 0.8051) LR: 0.000021
+Batch 30: Loss 1.1182 (Cls: 0.7875) LR: 0.000020
+Batch 40: Loss 1.1719 (Cls: 0.8350) LR: 0.000020
+Batch 50: Loss 1.1760 (Cls: 0.8333) LR: 0.000020
+Batch 60: Loss 1.1503 (Cls: 0.7999) LR: 0.000020
+Batch 70: Loss 1.1776 (Cls: 0.8360) LR: 0.000019
+Batch 80: Loss 1.0744 (Cls: 0.7438) LR: 0.000019
+Epoch 56: Loss 1.1202, Acc 0.5948
+Val Loss 1.2857, Val Acc 0.5942
+Batch 0: Loss 1.1054 (Cls: 0.7661) LR: 0.000019
+Batch 10: Loss 1.0527 (Cls: 0.7207) LR: 0.000018
+Batch 20: Loss 1.1133 (Cls: 0.7719) LR: 0.000018
+Batch 30: Loss 1.0667 (Cls: 0.7305) LR: 0.000018
+Batch 40: Loss 1.1407 (Cls: 0.7978) LR: 0.000018
+Batch 50: Loss 1.0714 (Cls: 0.7415) LR: 0.000017
+Batch 60: Loss 1.1239 (Cls: 0.7895) LR: 0.000017
+Batch 70: Loss 1.0907 (Cls: 0.7613) LR: 0.000017
+Batch 80: Loss 1.1195 (Cls: 0.7893) LR: 0.000016
+Epoch 57: Loss 1.1123, Acc 0.6045
+Val Loss 1.2441, Val Acc 0.6231
+Batch 0: Loss 1.1853 (Cls: 0.8437) LR: 0.000016
+Batch 10: Loss 1.3026 (Cls: 0.9414) LR: 0.000016
+Batch 20: Loss 1.0774 (Cls: 0.7572) LR: 0.000016
+Batch 30: Loss 1.0662 (Cls: 0.7459) LR: 0.000016
+Batch 40: Loss 1.1854 (Cls: 0.8331) LR: 0.000015
+Batch 50: Loss 1.0588 (Cls: 0.7418) LR: 0.000015
+Batch 60: Loss 1.0712 (Cls: 0.7362) LR: 0.000015
+Batch 70: Loss 1.0348 (Cls: 0.6998) LR: 0.000014
+Batch 80: Loss 0.9763 (Cls: 0.6505) LR: 0.000014
+Epoch 58: Loss 1.1097, Acc 0.6050
+Val Loss 1.3324, Val Acc 0.5585
+Batch 0: Loss 1.1710 (Cls: 0.8266) LR: 0.000014
+Batch 10: Loss 1.0392 (Cls: 0.7044) LR: 0.000014
+Batch 20: Loss 1.1845 (Cls: 0.8422) LR: 0.000014
+Batch 30: Loss 1.1520 (Cls: 0.8262) LR: 0.000013
+Batch 40: Loss 1.1323 (Cls: 0.8007) LR: 0.000013
+Batch 50: Loss 1.1523 (Cls: 0.8082) LR: 0.000013
+Batch 60: Loss 1.1218 (Cls: 0.7815) LR: 0.000012
+Batch 70: Loss 1.0838 (Cls: 0.7534) LR: 0.000012
+Batch 80: Loss 0.9601 (Cls: 0.6426) LR: 0.000012
+Epoch 59: Loss 1.1055, Acc 0.6195
+Val Loss 1.2805, Val Acc 0.5912
+Batch 0: Loss 1.1533 (Cls: 0.8146) LR: 0.000012
+Batch 10: Loss 1.1526 (Cls: 0.7977) LR: 0.000012
+Batch 20: Loss 1.1111 (Cls: 0.7893) LR: 0.000011
+Batch 30: Loss 1.1669 (Cls: 0.8309) LR: 0.000011
+Batch 40: Loss 1.0658 (Cls: 0.7437) LR: 0.000011
+Batch 50: Loss 1.1463 (Cls: 0.7977) LR: 0.000011
+Batch 60: Loss 1.1597 (Cls: 0.8206) LR: 0.000010
+Batch 70: Loss 1.0265 (Cls: 0.6863) LR: 0.000010
+Batch 80: Loss 1.0556 (Cls: 0.7238) LR: 0.000010
+Epoch 60: Loss 1.1070, Acc 0.6158
+Val Loss 1.2990, Val Acc 0.5805
+Batch 0: Loss 1.2151 (Cls: 0.8717) LR: 0.000010
+Batch 10: Loss 0.9785 (Cls: 0.6590) LR: 0.000010
+Batch 20: Loss 1.1614 (Cls: 0.8232) LR: 0.000009
+Batch 30: Loss 1.2396 (Cls: 0.8795) LR: 0.000009
+Batch 40: Loss 1.0765 (Cls: 0.7423) LR: 0.000009
+Batch 50: Loss 1.0709 (Cls: 0.7340) LR: 0.000009
+Batch 60: Loss 1.1429 (Cls: 0.8123) LR: 0.000009
+Batch 70: Loss 1.1046 (Cls: 0.7780) LR: 0.000008
+Batch 80: Loss 1.1192 (Cls: 0.7864) LR: 0.000008
+Epoch 61: Loss 1.0952, Acc 0.6208
+Val Loss 1.3011, Val Acc 0.5729
+Batch 0: Loss 1.2058 (Cls: 0.8593) LR: 0.000008
+Batch 10: Loss 1.1073 (Cls: 0.7805) LR: 0.000008
+Batch 20: Loss 1.1272 (Cls: 0.7983) LR: 0.000008
+Batch 30: Loss 1.0898 (Cls: 0.7464) LR: 0.000007
+Batch 40: Loss 1.0430 (Cls: 0.7137) LR: 0.000007
+Batch 50: Loss 1.0771 (Cls: 0.7510) LR: 0.000007
+Batch 60: Loss 1.0955 (Cls: 0.7601) LR: 0.000007
+Batch 70: Loss 1.1132 (Cls: 0.7771) LR: 0.000007
+Batch 80: Loss 1.1924 (Cls: 0.8448) LR: 0.000006
+Epoch 62: Loss 1.0955, Acc 0.6273
+Val Loss 1.2243, Val Acc 0.6360
+Batch 0: Loss 1.0857 (Cls: 0.7347) LR: 0.000006
+Batch 10: Loss 1.0735 (Cls: 0.7569) LR: 0.000006
+Batch 20: Loss 1.0560 (Cls: 0.7217) LR: 0.000006
+Batch 30: Loss 1.0617 (Cls: 0.7338) LR: 0.000006
+Batch 40: Loss 1.0466 (Cls: 0.7199) LR: 0.000006
+Batch 50: Loss 0.9618 (Cls: 0.6534) LR: 0.000006
+Batch 60: Loss 1.0906 (Cls: 0.7583) LR: 0.000005
+Batch 70: Loss 1.0502 (Cls: 0.7201) LR: 0.000005
+Batch 80: Loss 0.9660 (Cls: 0.6614) LR: 0.000005
+Epoch 63: Loss 1.0840, Acc 0.6332
+Val Loss 1.2660, Val Acc 0.6208
+Batch 0: Loss 1.0884 (Cls: 0.7512) LR: 0.000005
+Batch 10: Loss 1.0373 (Cls: 0.7061) LR: 0.000005
+Batch 20: Loss 1.0039 (Cls: 0.6876) LR: 0.000005
+Batch 30: Loss 1.0528 (Cls: 0.7245) LR: 0.000004
+Batch 40: Loss 1.1244 (Cls: 0.7821) LR: 0.000004
+Batch 50: Loss 1.0422 (Cls: 0.7168) LR: 0.000004
+Batch 60: Loss 1.1081 (Cls: 0.7817) LR: 0.000004
+Batch 70: Loss 1.0997 (Cls: 0.7742) LR: 0.000004
+Batch 80: Loss 1.0520 (Cls: 0.7155) LR: 0.000004
+Epoch 64: Loss 1.0842, Acc 0.6258
+Val Loss 1.2713, Val Acc 0.6041
+Batch 0: Loss 1.2473 (Cls: 0.8956) LR: 0.000004
+Batch 10: Loss 1.1273 (Cls: 0.7930) LR: 0.000003
+Batch 20: Loss 1.0619 (Cls: 0.7261) LR: 0.000003
+Batch 30: Loss 1.1183 (Cls: 0.7900) LR: 0.000003
+Batch 40: Loss 1.0663 (Cls: 0.7516) LR: 0.000003
+Batch 50: Loss 1.0736 (Cls: 0.7489) LR: 0.000003
+Batch 60: Loss 1.0288 (Cls: 0.7037) LR: 0.000003
+Batch 70: Loss 1.1377 (Cls: 0.8111) LR: 0.000003
+Batch 80: Loss 1.0283 (Cls: 0.6913) LR: 0.000003
+Epoch 65: Loss 1.0760, Acc 0.6392
+Val Loss 1.2799, Val Acc 0.5980
+Batch 0: Loss 1.0759 (Cls: 0.7514) LR: 0.000003
+Batch 10: Loss 1.0216 (Cls: 0.6910) LR: 0.000002
+Batch 20: Loss 1.0471 (Cls: 0.7123) LR: 0.000002
+Batch 30: Loss 1.0891 (Cls: 0.7536) LR: 0.000002
+Batch 40: Loss 0.9732 (Cls: 0.6588) LR: 0.000002
+Batch 50: Loss 1.1836 (Cls: 0.8412) LR: 0.000002
+Batch 60: Loss 1.0757 (Cls: 0.7342) LR: 0.000002
+Batch 70: Loss 1.0080 (Cls: 0.6816) LR: 0.000002
+Batch 80: Loss 1.2100 (Cls: 0.8616) LR: 0.000002
+Epoch 66: Loss 1.0664, Acc 0.6427
+Val Loss 1.2753, Val Acc 0.6056
+Batch 0: Loss 1.1208 (Cls: 0.7829) LR: 0.000002
+Batch 10: Loss 1.0490 (Cls: 0.7171) LR: 0.000002
+Batch 20: Loss 1.1172 (Cls: 0.7756) LR: 0.000001
+Batch 30: Loss 1.0749 (Cls: 0.7451) LR: 0.000001
+Batch 40: Loss 1.0369 (Cls: 0.7081) LR: 0.000001
+Batch 50: Loss 1.2215 (Cls: 0.8763) LR: 0.000001
+Batch 60: Loss 1.0045 (Cls: 0.6825) LR: 0.000001
+Batch 70: Loss 0.9415 (Cls: 0.6288) LR: 0.000001
+Batch 80: Loss 1.1621 (Cls: 0.8162) LR: 0.000001
+Epoch 67: Loss 1.0810, Acc 0.6384
+Val Loss 1.2821, Val Acc 0.5995
+Batch 0: Loss 1.0476 (Cls: 0.7322) LR: 0.000001
+Batch 10: Loss 1.1600 (Cls: 0.8208) LR: 0.000001
+Batch 20: Loss 1.0004 (Cls: 0.6842) LR: 0.000001
+Batch 30: Loss 1.0748 (Cls: 0.7477) LR: 0.000001
+Batch 40: Loss 1.2353 (Cls: 0.8796) LR: 0.000001
+Batch 50: Loss 0.9991 (Cls: 0.6707) LR: 0.000001
+Batch 60: Loss 1.1063 (Cls: 0.7795) LR: 0.000001
+Batch 70: Loss 1.0308 (Cls: 0.7063) LR: 0.000000
+Batch 80: Loss 1.1209 (Cls: 0.7747) LR: 0.000000
+Epoch 68: Loss 1.0699, Acc 0.6405
+Val Loss 1.2804, Val Acc 0.5973
+Batch 0: Loss 1.1647 (Cls: 0.8265) LR: 0.000000
+Batch 10: Loss 1.0448 (Cls: 0.7238) LR: 0.000000
+Batch 20: Loss 1.1434 (Cls: 0.8098) LR: 0.000000
+Batch 30: Loss 1.1172 (Cls: 0.7884) LR: 0.000000
+Batch 40: Loss 1.1018 (Cls: 0.7734) LR: 0.000000
+Batch 50: Loss 1.0539 (Cls: 0.7252) LR: 0.000000
+Batch 60: Loss 1.0475 (Cls: 0.7297) LR: 0.000000
+Batch 70: Loss 1.1388 (Cls: 0.8020) LR: 0.000000
+Batch 80: Loss 1.1211 (Cls: 0.7767) LR: 0.000000
+Epoch 69: Loss 1.0633, Acc 0.6466
+Val Loss 1.2769, Val Acc 0.6033
+Batch 0: Loss 1.0850 (Cls: 0.7537) LR: 0.000000
+Batch 10: Loss 1.1577 (Cls: 0.8202) LR: 0.000000
+Batch 20: Loss 1.0520 (Cls: 0.7159) LR: 0.000000
+Batch 30: Loss 1.1302 (Cls: 0.7972) LR: 0.000000
+Batch 40: Loss 1.1377 (Cls: 0.7974) LR: 0.000000
+Batch 50: Loss 1.0270 (Cls: 0.7074) LR: 0.000000
+Batch 60: Loss 1.0396 (Cls: 0.7284) LR: 0.000000
+Batch 70: Loss 1.0981 (Cls: 0.7605) LR: 0.000000
+Batch 80: Loss 1.0867 (Cls: 0.7594) LR: 0.000000
+Epoch 70: Loss 1.0747, Acc 0.6312
+Val Loss 1.2763, Val Acc 0.6049
+Running Test Evaluation...
+/root/shared-nvme/fire/src/training/train.py:349: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(best_model_path))
+Loaded best model for testing.
+Test Loss: 1.3239, Test Acc: 0.5847

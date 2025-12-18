@@ -4,8 +4,8 @@ project:
 
 data:
   path: "data/"
-  batch_size: 32
-  num_workers: 4
+  batch_size: 16
+  num_workers: 2
   image_size: 224
   vocab_size: 5000
   seq_len: 16
@@ -16,6 +16,12 @@ model:
   method_option: "alignment" # "vae" or "alignment"
   backbone: "vit_base_patch16_224"
   use_fine: False
+  # Sentence-level encoder for alignment (disabled by default)
+  use_sentence_encoder: False
+  sentence_encoder_name: "sentence-transformers/all-MiniLM-L6-v2"
+  sentence_pretrained: True  # True: load pretrained SentenceTransformer; False: build a simple trainable encoder
+  freeze_sentence_encoder: True  # When using pretrained encoder, freeze its weights (recommended)
+  align_text_source: "fine"  # "fine" or "coarse"
 
 training:
   epochs: 70
@@ -26,3 +32,4 @@ training:
   lambda_cls: 1.0
   lambda_vae: 0.1
   lambda_align: 0.1
+  align_temperature: 0.07

@@ -1,0 +1,5 @@
+src/data/image/
+results/**/*.pth
+all-MiniLM-L6-v2
+train_sentence_encoder/output_fine/*.pt
+fire.zip

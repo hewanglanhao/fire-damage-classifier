@@ -1,0 +1,925 @@
+Loaded config: {'data': {'batch_size': 64, 'image_size': 224, 'num_workers': 4, 'path': 'src/data/', 'seq_len': 16, 'vocab_size': 5000}, 'model': {'align_text_source': 'coarse', 'backbone': 'vit_tiny_patch16_224', 'freeze_sentence_encoder': True, 'fusion_include_coarse': False, 'fusion_include_fine': False, 'fusion_include_image': True, 'latent_dim': 512, 'method_option': 'alignment', 'num_classes': 5, 'sentence_encoder_device': 'cuda', 'sentence_encoder_name': 'all-MiniLM-L6-v2', 'sentence_pretrained': True, 'use_coarse': False, 'use_fine': False, 'use_sentence_encoder': True}, 'project': {'name': 'FireDamageClassification', 'version': '1.0'}, 'training': {'align_temperature': 0.07, 'drop_path_rate': 0.1, 'dropout': 0.2, 'epochs': 70, 'lambda_align': 0.1, 'lambda_cls': 1.0, 'lambda_vae': 0.1, 'lr': '1e-4', 'weight_decay': '1e-3'}}
+Results will be saved to: results/sentence_align_coarse_pretrained
+Using device: cuda
+Model Type: method
+Splitting by Region:
+Train Regions: ['GLA', 'VAL', 'MOS', 'CAS', 'MIL', 'POST', 'CRE', 'DIN', 'MON', 'SCU', 'FOR', 'BEU']
+Val Regions: ['BEA', 'AUG', 'ZOG']
+Test Regions: ['CAL', 'FAI', 'DIX']
+Scanning images in src/data/image for mode train...
+Loaded 5393 samples for mode train
+Scanning images in src/data/image for mode val...
+Loaded 1316 samples for mode val
+Scanning images in src/data/image for mode test...
+Loaded 1122 samples for mode test
+Calculating class weights for WeightedRandomSampler...
+Train Class Counts: {1: 204, 0: 2281, 4: 766, 3: 2060, 2: 82}
+Data loaded: Train=5393, Val=1316, Test=1122
+Parameters: 12,129,223
+FLOPs: 1083166208.0
+Starting training loop...
+Batch 0: Loss 1.8173 (Cls: 1.3911) LR: 0.000004
+Batch 10: Loss 1.4849 (Cls: 1.0630) LR: 0.000004
+Batch 20: Loss 1.5144 (Cls: 1.1006) LR: 0.000004
+Batch 30: Loss 1.6115 (Cls: 1.1914) LR: 0.000004
+Batch 40: Loss 1.5990 (Cls: 1.1815) LR: 0.000004
+Batch 50: Loss 1.5935 (Cls: 1.1704) LR: 0.000004
+Batch 60: Loss 1.5429 (Cls: 1.1222) LR: 0.000004
+Batch 70: Loss 1.4911 (Cls: 1.0713) LR: 0.000004
+Batch 80: Loss 1.5538 (Cls: 1.1344) LR: 0.000004
+Epoch 1: Loss 1.5785, Acc 0.2053
+Val Loss 1.6796, Val Acc 0.1223
+New best model saved with Val Acc: 0.1223
+Batch 0: Loss 1.5992 (Cls: 1.1822) LR: 0.000005
+Batch 10: Loss 1.5868 (Cls: 1.1616) LR: 0.000005
+Batch 20: Loss 1.5280 (Cls: 1.1107) LR: 0.000005
+Batch 30: Loss 1.5344 (Cls: 1.1129) LR: 0.000005
+Batch 40: Loss 1.5321 (Cls: 1.1196) LR: 0.000005
+Batch 50: Loss 1.5224 (Cls: 1.1021) LR: 0.000005
+Batch 60: Loss 1.5817 (Cls: 1.1636) LR: 0.000006
+Batch 70: Loss 1.5146 (Cls: 1.0996) LR: 0.000006
+Batch 80: Loss 1.5477 (Cls: 1.1245) LR: 0.000006
+Epoch 2: Loss 1.5519, Acc 0.2208
+Val Loss 1.5503, Val Acc 0.2910
+New best model saved with Val Acc: 0.2910
+Batch 0: Loss 1.5185 (Cls: 1.0960) LR: 0.000006
+Batch 10: Loss 1.5717 (Cls: 1.1554) LR: 0.000006
+Batch 20: Loss 1.5556 (Cls: 1.1399) LR: 0.000007
+Batch 30: Loss 1.5423 (Cls: 1.1213) LR: 0.000007
+Batch 40: Loss 1.4476 (Cls: 1.0302) LR: 0.000007
+Batch 50: Loss 1.4889 (Cls: 1.0683) LR: 0.000008
+Batch 60: Loss 1.5529 (Cls: 1.1329) LR: 0.000008
+Batch 70: Loss 1.5390 (Cls: 1.1212) LR: 0.000008
+Batch 80: Loss 1.5070 (Cls: 1.0918) LR: 0.000009
+Epoch 3: Loss 1.5314, Acc 0.2093
+Val Loss 1.5920, Val Acc 0.2348
+Batch 0: Loss 1.5638 (Cls: 1.1443) LR: 0.000009
+Batch 10: Loss 1.5573 (Cls: 1.1406) LR: 0.000009
+Batch 20: Loss 1.5942 (Cls: 1.1757) LR: 0.000010
+Batch 30: Loss 1.4417 (Cls: 1.0256) LR: 0.000010
+Batch 40: Loss 1.5640 (Cls: 1.1436) LR: 0.000010
+Batch 50: Loss 1.4661 (Cls: 1.0501) LR: 0.000011
+Batch 60: Loss 1.5156 (Cls: 1.0967) LR: 0.000011
+Batch 70: Loss 1.5832 (Cls: 1.1646) LR: 0.000012
+Batch 80: Loss 1.5506 (Cls: 1.1375) LR: 0.000012
+Epoch 4: Loss 1.5281, Acc 0.2283
+Val Loss 1.5794, Val Acc 0.2561
+Batch 0: Loss 1.5386 (Cls: 1.1226) LR: 0.000012
+Batch 10: Loss 1.4811 (Cls: 1.0646) LR: 0.000013
+Batch 20: Loss 1.5075 (Cls: 1.0911) LR: 0.000013
+Batch 30: Loss 1.5332 (Cls: 1.1162) LR: 0.000014
+Batch 40: Loss 1.5341 (Cls: 1.1235) LR: 0.000014
+Batch 50: Loss 1.5376 (Cls: 1.1226) LR: 0.000015
+Batch 60: Loss 1.5340 (Cls: 1.1154) LR: 0.000015
+Batch 70: Loss 1.5708 (Cls: 1.1605) LR: 0.000016
+Batch 80: Loss 1.5839 (Cls: 1.1663) LR: 0.000017
+Epoch 5: Loss 1.5199, Acc 0.2322
+Val Loss 1.6063, Val Acc 0.3442
+New best model saved with Val Acc: 0.3442
+Batch 0: Loss 1.5000 (Cls: 1.0777) LR: 0.000017
+Batch 10: Loss 1.4809 (Cls: 1.0662) LR: 0.000017
+Batch 20: Loss 1.5289 (Cls: 1.1108) LR: 0.000018
+Batch 30: Loss 1.4630 (Cls: 1.0478) LR: 0.000019
+Batch 40: Loss 1.5448 (Cls: 1.1281) LR: 0.000019
+Batch 50: Loss 1.4589 (Cls: 1.0439) LR: 0.000020
+Batch 60: Loss 1.4718 (Cls: 1.0634) LR: 0.000021
+Batch 70: Loss 1.5159 (Cls: 1.0974) LR: 0.000021
+Batch 80: Loss 1.4933 (Cls: 1.0812) LR: 0.000022
+Epoch 6: Loss 1.5132, Acc 0.2479
+Val Loss 1.5292, Val Acc 0.4749
+New best model saved with Val Acc: 0.4749
+Batch 0: Loss 1.4912 (Cls: 1.0772) LR: 0.000022
+Batch 10: Loss 1.5565 (Cls: 1.1438) LR: 0.000023
+Batch 20: Loss 1.4986 (Cls: 1.0836) LR: 0.000023
+Batch 30: Loss 1.5450 (Cls: 1.1322) LR: 0.000024
+Batch 40: Loss 1.4528 (Cls: 1.0381) LR: 0.000025
+Batch 50: Loss 1.5017 (Cls: 1.0894) LR: 0.000026
+Batch 60: Loss 1.4553 (Cls: 1.0421) LR: 0.000026
+Batch 70: Loss 1.4441 (Cls: 1.0308) LR: 0.000027
+Batch 80: Loss 1.5331 (Cls: 1.1232) LR: 0.000028
+Epoch 7: Loss 1.5041, Acc 0.2540
+Val Loss 1.5311, Val Acc 0.3837
+Batch 0: Loss 1.4997 (Cls: 1.0832) LR: 0.000028
+Batch 10: Loss 1.4617 (Cls: 1.0508) LR: 0.000029
+Batch 20: Loss 1.4672 (Cls: 1.0549) LR: 0.000030
+Batch 30: Loss 1.5882 (Cls: 1.1775) LR: 0.000030
+Batch 40: Loss 1.5389 (Cls: 1.1271) LR: 0.000031
+Batch 50: Loss 1.4593 (Cls: 1.0456) LR: 0.000032
+Batch 60: Loss 1.5343 (Cls: 1.1269) LR: 0.000033
+Batch 70: Loss 1.4676 (Cls: 1.0619) LR: 0.000033
+Batch 80: Loss 1.4508 (Cls: 1.0469) LR: 0.000034
+Epoch 8: Loss 1.4855, Acc 0.2644
+Val Loss 1.5470, Val Acc 0.4422
+Batch 0: Loss 1.5106 (Cls: 1.1009) LR: 0.000035
+Batch 10: Loss 1.4927 (Cls: 1.0802) LR: 0.000035
+Batch 20: Loss 1.4621 (Cls: 1.0566) LR: 0.000036
+Batch 30: Loss 1.4747 (Cls: 1.0742) LR: 0.000037
+Batch 40: Loss 1.3833 (Cls: 0.9857) LR: 0.000038
+Batch 50: Loss 1.4163 (Cls: 1.0159) LR: 0.000039
+Batch 60: Loss 1.5164 (Cls: 1.1089) LR: 0.000039
+Batch 70: Loss 1.4877 (Cls: 1.0790) LR: 0.000040
+Batch 80: Loss 1.4621 (Cls: 1.0548) LR: 0.000041
+Epoch 9: Loss 1.4642, Acc 0.2793
+Val Loss 1.4911, Val Acc 0.4483
+Batch 0: Loss 1.4369 (Cls: 1.0431) LR: 0.000041
+Batch 10: Loss 1.5197 (Cls: 1.1132) LR: 0.000042
+Batch 20: Loss 1.4796 (Cls: 1.0767) LR: 0.000043
+Batch 30: Loss 1.3955 (Cls: 1.0004) LR: 0.000044
+Batch 40: Loss 1.4615 (Cls: 1.0530) LR: 0.000045
+Batch 50: Loss 1.4964 (Cls: 1.0928) LR: 0.000046
+Batch 60: Loss 1.4920 (Cls: 1.0852) LR: 0.000046
+Batch 70: Loss 1.4461 (Cls: 1.0478) LR: 0.000047
+Batch 80: Loss 1.4282 (Cls: 1.0296) LR: 0.000048
+Epoch 10: Loss 1.4516, Acc 0.2872
+Val Loss 1.5087, Val Acc 0.4453
+Batch 0: Loss 1.4960 (Cls: 1.0802) LR: 0.000049
+Batch 10: Loss 1.4282 (Cls: 1.0313) LR: 0.000049
+Batch 20: Loss 1.4003 (Cls: 1.0022) LR: 0.000050
+Batch 30: Loss 1.4184 (Cls: 1.0142) LR: 0.000051
+Batch 40: Loss 1.4168 (Cls: 1.0206) LR: 0.000052
+Batch 50: Loss 1.4764 (Cls: 1.0751) LR: 0.000053
+Batch 60: Loss 1.4674 (Cls: 1.0628) LR: 0.000054
+Batch 70: Loss 1.4044 (Cls: 1.0103) LR: 0.000054
+Batch 80: Loss 1.3988 (Cls: 1.0063) LR: 0.000055
+Epoch 11: Loss 1.4296, Acc 0.3265
+Val Loss 1.5328, Val Acc 0.3328
+Batch 0: Loss 1.3468 (Cls: 0.9549) LR: 0.000056
+Batch 10: Loss 1.4672 (Cls: 1.0561) LR: 0.000057
+Batch 20: Loss 1.4124 (Cls: 1.0139) LR: 0.000057
+Batch 30: Loss 1.5243 (Cls: 1.1228) LR: 0.000058
+Batch 40: Loss 1.4818 (Cls: 1.0872) LR: 0.000059
+Batch 50: Loss 1.3687 (Cls: 0.9812) LR: 0.000060
+Batch 60: Loss 1.4316 (Cls: 1.0388) LR: 0.000061
+Batch 70: Loss 1.3559 (Cls: 0.9640) LR: 0.000062
+Batch 80: Loss 1.3897 (Cls: 1.0081) LR: 0.000062
+Epoch 12: Loss 1.4265, Acc 0.3143
+Val Loss 1.3438, Val Acc 0.5578
+New best model saved with Val Acc: 0.5578
+Batch 0: Loss 1.4511 (Cls: 1.0572) LR: 0.000063
+Batch 10: Loss 1.4530 (Cls: 1.0590) LR: 0.000064
+Batch 20: Loss 1.3655 (Cls: 0.9733) LR: 0.000064
+Batch 30: Loss 1.3200 (Cls: 0.9363) LR: 0.000065
+Batch 40: Loss 1.4366 (Cls: 1.0489) LR: 0.000066
+Batch 50: Loss 1.3804 (Cls: 0.9887) LR: 0.000067
+Batch 60: Loss 1.3914 (Cls: 1.0065) LR: 0.000068
+Batch 70: Loss 1.4307 (Cls: 1.0327) LR: 0.000068
+Batch 80: Loss 1.3719 (Cls: 0.9867) LR: 0.000069
+Epoch 13: Loss 1.4027, Acc 0.3486
+Val Loss 1.4486, Val Acc 0.4856
+Batch 0: Loss 1.3927 (Cls: 0.9925) LR: 0.000070
+Batch 10: Loss 1.4129 (Cls: 1.0214) LR: 0.000070
+Batch 20: Loss 1.3576 (Cls: 0.9770) LR: 0.000071
+Batch 30: Loss 1.3879 (Cls: 1.0094) LR: 0.000072
+Batch 40: Loss 1.4110 (Cls: 1.0154) LR: 0.000073
+Batch 50: Loss 1.3887 (Cls: 0.9967) LR: 0.000074
+Batch 60: Loss 1.4869 (Cls: 1.0880) LR: 0.000074
+Batch 70: Loss 1.3838 (Cls: 0.9999) LR: 0.000075
+Batch 80: Loss 1.4450 (Cls: 1.0543) LR: 0.000076
+Epoch 14: Loss 1.3920, Acc 0.3423
+Val Loss 1.4041, Val Acc 0.5479
+Batch 0: Loss 1.3369 (Cls: 0.9526) LR: 0.000076
+Batch 10: Loss 1.4275 (Cls: 1.0460) LR: 0.000077
+Batch 20: Loss 1.3595 (Cls: 0.9756) LR: 0.000078
+Batch 30: Loss 1.4572 (Cls: 1.0567) LR: 0.000078
+Batch 40: Loss 1.3918 (Cls: 1.0103) LR: 0.000079
+Batch 50: Loss 1.2954 (Cls: 0.9202) LR: 0.000080
+Batch 60: Loss 1.3584 (Cls: 0.9775) LR: 0.000080
+Batch 70: Loss 1.3612 (Cls: 0.9847) LR: 0.000081
+Batch 80: Loss 1.4282 (Cls: 1.0518) LR: 0.000082
+Epoch 15: Loss 1.3768, Acc 0.3681
+Val Loss 1.3503, Val Acc 0.5646
+New best model saved with Val Acc: 0.5646
+Batch 0: Loss 1.3600 (Cls: 0.9900) LR: 0.000082
+Batch 10: Loss 1.3610 (Cls: 0.9812) LR: 0.000083
+Batch 20: Loss 1.3566 (Cls: 0.9821) LR: 0.000083
+Batch 30: Loss 1.4233 (Cls: 1.0270) LR: 0.000084
+Batch 40: Loss 1.3897 (Cls: 1.0068) LR: 0.000085
+Batch 50: Loss 1.4020 (Cls: 1.0305) LR: 0.000085
+Batch 60: Loss 1.3799 (Cls: 0.9912) LR: 0.000086
+Batch 70: Loss 1.3894 (Cls: 1.0044) LR: 0.000086
+Batch 80: Loss 1.3490 (Cls: 0.9585) LR: 0.000087
+Epoch 16: Loss 1.3595, Acc 0.3798
+Val Loss 1.3294, Val Acc 0.5935
+New best model saved with Val Acc: 0.5935
+Batch 0: Loss 1.3283 (Cls: 0.9560) LR: 0.000087
+Batch 10: Loss 1.3473 (Cls: 0.9781) LR: 0.000088
+Batch 20: Loss 1.3185 (Cls: 0.9456) LR: 0.000088
+Batch 30: Loss 1.3856 (Cls: 1.0164) LR: 0.000089
+Batch 40: Loss 1.4060 (Cls: 1.0325) LR: 0.000089
+Batch 50: Loss 1.3204 (Cls: 0.9543) LR: 0.000090
+Batch 60: Loss 1.4253 (Cls: 1.0549) LR: 0.000091
+Batch 70: Loss 1.3159 (Cls: 0.9404) LR: 0.000091
+Batch 80: Loss 1.2854 (Cls: 0.9277) LR: 0.000092
+Epoch 17: Loss 1.3521, Acc 0.3840
+Val Loss 1.3867, Val Acc 0.5524
+Batch 0: Loss 1.3793 (Cls: 1.0016) LR: 0.000092
+Batch 10: Loss 1.3259 (Cls: 0.9508) LR: 0.000092
+Batch 20: Loss 1.4127 (Cls: 1.0368) LR: 0.000093
+Batch 30: Loss 1.4052 (Cls: 1.0218) LR: 0.000093
+Batch 40: Loss 1.3706 (Cls: 1.0062) LR: 0.000094
+Batch 50: Loss 1.3119 (Cls: 0.9337) LR: 0.000094
+Batch 60: Loss 1.3115 (Cls: 0.9565) LR: 0.000094
+Batch 70: Loss 1.3477 (Cls: 0.9939) LR: 0.000095
+Batch 80: Loss 1.2524 (Cls: 0.9135) LR: 0.000095
+Epoch 18: Loss 1.3454, Acc 0.3829
+Val Loss 1.5565, Val Acc 0.2941
+Batch 0: Loss 1.3376 (Cls: 0.9766) LR: 0.000095
+Batch 10: Loss 1.2561 (Cls: 0.9034) LR: 0.000096
+Batch 20: Loss 1.3072 (Cls: 0.9397) LR: 0.000096
+Batch 30: Loss 1.3728 (Cls: 0.9968) LR: 0.000096
+Batch 40: Loss 1.2497 (Cls: 0.8975) LR: 0.000097
+Batch 50: Loss 1.3562 (Cls: 1.0036) LR: 0.000097
+Batch 60: Loss 1.2766 (Cls: 0.9215) LR: 0.000097
+Batch 70: Loss 1.2435 (Cls: 0.9036) LR: 0.000098
+Batch 80: Loss 1.2950 (Cls: 0.9305) LR: 0.000098
+Epoch 19: Loss 1.3140, Acc 0.4129
+Val Loss 1.2795, Val Acc 0.6505
+New best model saved with Val Acc: 0.6505
+Batch 0: Loss 1.3115 (Cls: 0.9523) LR: 0.000098
+Batch 10: Loss 1.4369 (Cls: 1.0365) LR: 0.000098
+Batch 20: Loss 1.2587 (Cls: 0.8959) LR: 0.000098
+Batch 30: Loss 1.3510 (Cls: 0.9787) LR: 0.000099
+Batch 40: Loss 1.4134 (Cls: 1.0376) LR: 0.000099
+Batch 50: Loss 1.3577 (Cls: 0.9926) LR: 0.000099
+Batch 60: Loss 1.3362 (Cls: 0.9708) LR: 0.000099
+Batch 70: Loss 1.3474 (Cls: 0.9796) LR: 0.000099
+Batch 80: Loss 1.3312 (Cls: 0.9756) LR: 0.000099
+Epoch 20: Loss 1.3225, Acc 0.4052
+Val Loss 1.4297, Val Acc 0.5182
+Batch 0: Loss 1.3276 (Cls: 0.9768) LR: 0.000099
+Batch 10: Loss 1.3161 (Cls: 0.9555) LR: 0.000100
+Batch 20: Loss 1.4521 (Cls: 1.0783) LR: 0.000100
+Batch 30: Loss 1.3334 (Cls: 0.9735) LR: 0.000100
+Batch 40: Loss 1.1949 (Cls: 0.8685) LR: 0.000100
+Batch 50: Loss 1.2277 (Cls: 0.8970) LR: 0.000100
+Batch 60: Loss 1.2979 (Cls: 0.9391) LR: 0.000100
+Batch 70: Loss 1.3248 (Cls: 0.9740) LR: 0.000100
+Batch 80: Loss 1.3293 (Cls: 0.9677) LR: 0.000100
+Epoch 21: Loss 1.3049, Acc 0.4207
+Val Loss 1.2478, Val Acc 0.6520
+New best model saved with Val Acc: 0.6520
+Batch 0: Loss 1.3585 (Cls: 1.0195) LR: 0.000100
+Batch 10: Loss 1.3159 (Cls: 0.9536) LR: 0.000100
+Batch 20: Loss 1.2953 (Cls: 0.9518) LR: 0.000100
+Batch 30: Loss 1.2718 (Cls: 0.9265) LR: 0.000100
+Batch 40: Loss 1.2974 (Cls: 0.9507) LR: 0.000100
+Batch 50: Loss 1.3617 (Cls: 1.0085) LR: 0.000100
+Batch 60: Loss 1.3004 (Cls: 0.9679) LR: 0.000100
+Batch 70: Loss 1.2530 (Cls: 0.9161) LR: 0.000100
+Batch 80: Loss 1.3767 (Cls: 1.0101) LR: 0.000100
+Epoch 22: Loss 1.2876, Acc 0.4315
+Val Loss 1.3501, Val Acc 0.5699
+Batch 0: Loss 1.3623 (Cls: 0.9972) LR: 0.000100
+Batch 10: Loss 1.3213 (Cls: 0.9790) LR: 0.000100
+Batch 20: Loss 1.2345 (Cls: 0.8823) LR: 0.000100
+Batch 30: Loss 1.1918 (Cls: 0.8644) LR: 0.000100
+Batch 40: Loss 1.3400 (Cls: 0.9887) LR: 0.000100
+Batch 50: Loss 1.3247 (Cls: 0.9656) LR: 0.000100
+Batch 60: Loss 1.2494 (Cls: 0.9080) LR: 0.000100
+Batch 70: Loss 1.2730 (Cls: 0.9411) LR: 0.000100
+Batch 80: Loss 1.1580 (Cls: 0.8352) LR: 0.000100
+Epoch 23: Loss 1.2861, Acc 0.4298
+Val Loss 1.3708, Val Acc 0.5426
+Batch 0: Loss 1.3309 (Cls: 0.9791) LR: 0.000100
+Batch 10: Loss 1.3812 (Cls: 1.0143) LR: 0.000100
+Batch 20: Loss 1.1740 (Cls: 0.8470) LR: 0.000099
+Batch 30: Loss 1.2090 (Cls: 0.8967) LR: 0.000099
+Batch 40: Loss 1.2353 (Cls: 0.9099) LR: 0.000099
+Batch 50: Loss 1.3436 (Cls: 0.9971) LR: 0.000099
+Batch 60: Loss 1.3024 (Cls: 0.9487) LR: 0.000099
+Batch 70: Loss 1.2083 (Cls: 0.8626) LR: 0.000099
+Batch 80: Loss 1.1859 (Cls: 0.8528) LR: 0.000099
+Epoch 24: Loss 1.2657, Acc 0.4389
+Val Loss 1.3393, Val Acc 0.5897
+Batch 0: Loss 1.3332 (Cls: 1.0081) LR: 0.000099
+Batch 10: Loss 1.2674 (Cls: 0.9305) LR: 0.000099
+Batch 20: Loss 1.2793 (Cls: 0.9369) LR: 0.000099
+Batch 30: Loss 1.2578 (Cls: 0.9194) LR: 0.000099
+Batch 40: Loss 1.2912 (Cls: 0.9445) LR: 0.000099
+Batch 50: Loss 1.3134 (Cls: 0.9793) LR: 0.000099
+Batch 60: Loss 1.2843 (Cls: 0.9431) LR: 0.000099
+Batch 70: Loss 1.2631 (Cls: 0.9157) LR: 0.000098
+Batch 80: Loss 1.3079 (Cls: 0.9754) LR: 0.000098
+Epoch 25: Loss 1.2482, Acc 0.4576
+Val Loss 1.3931, Val Acc 0.5061
+Batch 0: Loss 1.2858 (Cls: 0.9463) LR: 0.000098
+Batch 10: Loss 1.2050 (Cls: 0.8618) LR: 0.000098
+Batch 20: Loss 1.2297 (Cls: 0.8930) LR: 0.000098
+Batch 30: Loss 1.2780 (Cls: 0.9577) LR: 0.000098
+Batch 40: Loss 1.2827 (Cls: 0.9451) LR: 0.000098
+Batch 50: Loss 1.3499 (Cls: 1.0177) LR: 0.000098
+Batch 60: Loss 1.2334 (Cls: 0.9119) LR: 0.000098
+Batch 70: Loss 1.2130 (Cls: 0.8854) LR: 0.000098
+Batch 80: Loss 1.2154 (Cls: 0.8980) LR: 0.000097
+Epoch 26: Loss 1.2639, Acc 0.4448
+Val Loss 1.3501, Val Acc 0.5752
+Batch 0: Loss 1.2290 (Cls: 0.9058) LR: 0.000097
+Batch 10: Loss 1.1688 (Cls: 0.8510) LR: 0.000097
+Batch 20: Loss 1.2152 (Cls: 0.8959) LR: 0.000097
+Batch 30: Loss 1.2483 (Cls: 0.9414) LR: 0.000097
+Batch 40: Loss 1.2143 (Cls: 0.8844) LR: 0.000097
+Batch 50: Loss 1.2436 (Cls: 0.9109) LR: 0.000097
+Batch 60: Loss 1.3054 (Cls: 0.9753) LR: 0.000097
+Batch 70: Loss 1.2224 (Cls: 0.8935) LR: 0.000097
+Batch 80: Loss 1.2381 (Cls: 0.9212) LR: 0.000096
+Epoch 27: Loss 1.2442, Acc 0.4663
+Val Loss 1.3150, Val Acc 0.6071
+Batch 0: Loss 1.1840 (Cls: 0.8726) LR: 0.000096
+Batch 10: Loss 1.1905 (Cls: 0.8736) LR: 0.000096
+Batch 20: Loss 1.3040 (Cls: 0.9709) LR: 0.000096
+Batch 30: Loss 1.2312 (Cls: 0.9268) LR: 0.000096
+Batch 40: Loss 1.3253 (Cls: 0.9639) LR: 0.000096
+Batch 50: Loss 1.2436 (Cls: 0.9257) LR: 0.000096
+Batch 60: Loss 1.1268 (Cls: 0.8108) LR: 0.000095
+Batch 70: Loss 1.2869 (Cls: 0.9580) LR: 0.000095
+Batch 80: Loss 1.2681 (Cls: 0.9502) LR: 0.000095
+Epoch 28: Loss 1.2402, Acc 0.4675
+Val Loss 1.2584, Val Acc 0.6482
+Batch 0: Loss 1.2406 (Cls: 0.8966) LR: 0.000095
+Batch 10: Loss 1.2267 (Cls: 0.9092) LR: 0.000095
+Batch 20: Loss 1.2717 (Cls: 0.9533) LR: 0.000095
+Batch 30: Loss 1.2210 (Cls: 0.8991) LR: 0.000095
+Batch 40: Loss 1.3427 (Cls: 0.9851) LR: 0.000094
+Batch 50: Loss 1.2762 (Cls: 0.9489) LR: 0.000094
+Batch 60: Loss 1.2451 (Cls: 0.9246) LR: 0.000094
+Batch 70: Loss 1.1727 (Cls: 0.8490) LR: 0.000094
+Batch 80: Loss 1.2110 (Cls: 0.8741) LR: 0.000094
+Epoch 29: Loss 1.2200, Acc 0.4790
+Val Loss 1.3450, Val Acc 0.5767
+Batch 0: Loss 1.2266 (Cls: 0.8997) LR: 0.000094
+Batch 10: Loss 1.2683 (Cls: 0.9195) LR: 0.000093
+Batch 20: Loss 1.2222 (Cls: 0.8971) LR: 0.000093
+Batch 30: Loss 1.2254 (Cls: 0.8816) LR: 0.000093
+Batch 40: Loss 1.2401 (Cls: 0.9225) LR: 0.000093
+Batch 50: Loss 1.1658 (Cls: 0.8707) LR: 0.000093
+Batch 60: Loss 1.1683 (Cls: 0.8660) LR: 0.000092
+Batch 70: Loss 1.2833 (Cls: 0.9469) LR: 0.000092
+Batch 80: Loss 1.2931 (Cls: 0.9853) LR: 0.000092
+Epoch 30: Loss 1.2185, Acc 0.4838
+Val Loss 1.3723, Val Acc 0.5365
+Batch 0: Loss 1.2077 (Cls: 0.8965) LR: 0.000092
+Batch 10: Loss 1.2934 (Cls: 0.9663) LR: 0.000092
+Batch 20: Loss 1.2228 (Cls: 0.9068) LR: 0.000091
+Batch 30: Loss 1.3009 (Cls: 0.9545) LR: 0.000091
+Batch 40: Loss 1.2785 (Cls: 0.9664) LR: 0.000091
+Batch 50: Loss 1.1697 (Cls: 0.8598) LR: 0.000091
+Batch 60: Loss 1.1888 (Cls: 0.9050) LR: 0.000091
+Batch 70: Loss 1.1480 (Cls: 0.8383) LR: 0.000090
+Batch 80: Loss 1.3250 (Cls: 0.9955) LR: 0.000090
+Epoch 31: Loss 1.2163, Acc 0.4804
+Val Loss 1.3524, Val Acc 0.5631
+Batch 0: Loss 1.2453 (Cls: 0.9122) LR: 0.000090
+Batch 10: Loss 1.2676 (Cls: 0.9372) LR: 0.000090
+Batch 20: Loss 1.1946 (Cls: 0.8757) LR: 0.000090
+Batch 30: Loss 1.1937 (Cls: 0.8815) LR: 0.000089
+Batch 40: Loss 1.1665 (Cls: 0.8477) LR: 0.000089
+Batch 50: Loss 1.2568 (Cls: 0.9383) LR: 0.000089
+Batch 60: Loss 1.1098 (Cls: 0.8231) LR: 0.000089
+Batch 70: Loss 1.2088 (Cls: 0.9058) LR: 0.000088
+Batch 80: Loss 1.1447 (Cls: 0.8510) LR: 0.000088
+Epoch 32: Loss 1.2006, Acc 0.4932
+Val Loss 1.3267, Val Acc 0.5623
+Batch 0: Loss 1.3206 (Cls: 0.9751) LR: 0.000088
+Batch 10: Loss 1.0507 (Cls: 0.7674) LR: 0.000088
+Batch 20: Loss 1.1766 (Cls: 0.8776) LR: 0.000088
+Batch 30: Loss 1.0827 (Cls: 0.7940) LR: 0.000087
+Batch 40: Loss 1.0974 (Cls: 0.8074) LR: 0.000087
+Batch 50: Loss 1.0849 (Cls: 0.7976) LR: 0.000087
+Batch 60: Loss 1.2569 (Cls: 0.9176) LR: 0.000087
+Batch 70: Loss 1.1203 (Cls: 0.8152) LR: 0.000086
+Batch 80: Loss 1.2279 (Cls: 0.9335) LR: 0.000086
+Epoch 33: Loss 1.1728, Acc 0.5225
+Val Loss 1.2972, Val Acc 0.6033
+Batch 0: Loss 1.3090 (Cls: 1.0017) LR: 0.000086
+Batch 10: Loss 1.1794 (Cls: 0.8888) LR: 0.000086
+Batch 20: Loss 1.2609 (Cls: 0.9589) LR: 0.000085
+Batch 30: Loss 1.2330 (Cls: 0.9015) LR: 0.000085
+Batch 40: Loss 1.1021 (Cls: 0.8047) LR: 0.000085
+Batch 50: Loss 1.1188 (Cls: 0.8305) LR: 0.000085
+Batch 60: Loss 1.0830 (Cls: 0.8098) LR: 0.000084
+Batch 70: Loss 1.1817 (Cls: 0.8855) LR: 0.000084
+Batch 80: Loss 1.0580 (Cls: 0.7746) LR: 0.000084
+Epoch 34: Loss 1.1800, Acc 0.5105
+Val Loss 1.4081, Val Acc 0.5122
+Batch 0: Loss 1.1822 (Cls: 0.8757) LR: 0.000084
+Batch 10: Loss 1.2619 (Cls: 0.9447) LR: 0.000083
+Batch 20: Loss 1.1963 (Cls: 0.8972) LR: 0.000083
+Batch 30: Loss 1.1508 (Cls: 0.8637) LR: 0.000083
+Batch 40: Loss 1.1162 (Cls: 0.8248) LR: 0.000082
+Batch 50: Loss 1.1411 (Cls: 0.8461) LR: 0.000082
+Batch 60: Loss 1.0948 (Cls: 0.8028) LR: 0.000082
+Batch 70: Loss 1.0848 (Cls: 0.8028) LR: 0.000082
+Batch 80: Loss 1.1973 (Cls: 0.8793) LR: 0.000081
+Epoch 35: Loss 1.1832, Acc 0.5134
+Val Loss 1.4071, Val Acc 0.4947
+Batch 0: Loss 1.1710 (Cls: 0.8837) LR: 0.000081
+Batch 10: Loss 1.2654 (Cls: 0.9494) LR: 0.000081
+Batch 20: Loss 1.1781 (Cls: 0.8707) LR: 0.000081
+Batch 30: Loss 1.1228 (Cls: 0.8186) LR: 0.000080
+Batch 40: Loss 1.1620 (Cls: 0.8764) LR: 0.000080
+Batch 50: Loss 1.1768 (Cls: 0.8601) LR: 0.000080
+Batch 60: Loss 1.2034 (Cls: 0.8942) LR: 0.000079
+Batch 70: Loss 1.0962 (Cls: 0.8104) LR: 0.000079
+Batch 80: Loss 1.1687 (Cls: 0.9077) LR: 0.000079
+Epoch 36: Loss 1.1766, Acc 0.5101
+Val Loss 1.3433, Val Acc 0.5433
+Batch 0: Loss 1.2560 (Cls: 0.9353) LR: 0.000079
+Batch 10: Loss 1.2028 (Cls: 0.8912) LR: 0.000078
+Batch 20: Loss 1.1397 (Cls: 0.8317) LR: 0.000078
+Batch 30: Loss 1.0905 (Cls: 0.8026) LR: 0.000078
+Batch 40: Loss 1.1801 (Cls: 0.8807) LR: 0.000077
+Batch 50: Loss 1.2444 (Cls: 0.9271) LR: 0.000077
+Batch 60: Loss 1.1345 (Cls: 0.8314) LR: 0.000077
+Batch 70: Loss 1.1137 (Cls: 0.8170) LR: 0.000076
+Batch 80: Loss 1.1395 (Cls: 0.8444) LR: 0.000076
+Epoch 37: Loss 1.1661, Acc 0.5231
+Val Loss 1.3482, Val Acc 0.5691
+Batch 0: Loss 1.2304 (Cls: 0.9154) LR: 0.000076
+Batch 10: Loss 1.0521 (Cls: 0.7868) LR: 0.000076
+Batch 20: Loss 1.3713 (Cls: 1.0505) LR: 0.000075
+Batch 30: Loss 1.1644 (Cls: 0.8681) LR: 0.000075
+Batch 40: Loss 1.2606 (Cls: 0.9672) LR: 0.000075
+Batch 50: Loss 1.2279 (Cls: 0.9283) LR: 0.000074
+Batch 60: Loss 1.0925 (Cls: 0.8074) LR: 0.000074
+Batch 70: Loss 1.1664 (Cls: 0.8523) LR: 0.000074
+Batch 80: Loss 1.0482 (Cls: 0.7944) LR: 0.000073
+Epoch 38: Loss 1.1506, Acc 0.5292
+Val Loss 1.4471, Val Acc 0.4780
+Batch 0: Loss 1.1724 (Cls: 0.8758) LR: 0.000073
+Batch 10: Loss 1.0896 (Cls: 0.8186) LR: 0.000073
+Batch 20: Loss 1.1120 (Cls: 0.8516) LR: 0.000072
+Batch 30: Loss 1.1149 (Cls: 0.8219) LR: 0.000072
+Batch 40: Loss 1.2442 (Cls: 0.9314) LR: 0.000072
+Batch 50: Loss 1.1578 (Cls: 0.8758) LR: 0.000071
+Batch 60: Loss 1.1322 (Cls: 0.8370) LR: 0.000071
+Batch 70: Loss 1.0715 (Cls: 0.7996) LR: 0.000071
+Batch 80: Loss 1.3754 (Cls: 1.0337) LR: 0.000070
+Epoch 39: Loss 1.1444, Acc 0.5429
+Val Loss 1.2842, Val Acc 0.6178
+Batch 0: Loss 1.1133 (Cls: 0.8103) LR: 0.000070
+Batch 10: Loss 1.1818 (Cls: 0.8903) LR: 0.000070
+Batch 20: Loss 1.2594 (Cls: 0.9323) LR: 0.000069
+Batch 30: Loss 1.2398 (Cls: 0.9445) LR: 0.000069
+Batch 40: Loss 1.1944 (Cls: 0.8944) LR: 0.000069
+Batch 50: Loss 1.1922 (Cls: 0.9196) LR: 0.000068
+Batch 60: Loss 1.1578 (Cls: 0.8392) LR: 0.000068
+Batch 70: Loss 1.2123 (Cls: 0.8942) LR: 0.000068
+Batch 80: Loss 1.1073 (Cls: 0.8179) LR: 0.000067
+Epoch 40: Loss 1.1366, Acc 0.5381
+Val Loss 1.3175, Val Acc 0.5684
+Batch 0: Loss 1.1039 (Cls: 0.8059) LR: 0.000067
+Batch 10: Loss 1.0295 (Cls: 0.7671) LR: 0.000067
+Batch 20: Loss 1.1517 (Cls: 0.8716) LR: 0.000066
+Batch 30: Loss 1.2552 (Cls: 0.9633) LR: 0.000066
+Batch 40: Loss 1.1595 (Cls: 0.8492) LR: 0.000066
+Batch 50: Loss 1.1139 (Cls: 0.8567) LR: 0.000065
+Batch 60: Loss 1.1073 (Cls: 0.8385) LR: 0.000065
+Batch 70: Loss 1.0746 (Cls: 0.7872) LR: 0.000065
+Batch 80: Loss 1.1433 (Cls: 0.8444) LR: 0.000064
+Epoch 41: Loss 1.1277, Acc 0.5448
+Val Loss 1.2451, Val Acc 0.6307
+Batch 0: Loss 1.1061 (Cls: 0.8146) LR: 0.000064
+Batch 10: Loss 0.9900 (Cls: 0.7430) LR: 0.000064
+Batch 20: Loss 1.0761 (Cls: 0.7998) LR: 0.000063
+Batch 30: Loss 1.1242 (Cls: 0.8449) LR: 0.000063
+Batch 40: Loss 1.0953 (Cls: 0.8052) LR: 0.000063
+Batch 50: Loss 1.0679 (Cls: 0.7988) LR: 0.000062
+Batch 60: Loss 1.2790 (Cls: 0.9625) LR: 0.000062
+Batch 70: Loss 1.0707 (Cls: 0.7945) LR: 0.000062
+Batch 80: Loss 1.0312 (Cls: 0.7500) LR: 0.000061
+Epoch 42: Loss 1.1084, Acc 0.5596
+Val Loss 1.2973, Val Acc 0.6018
+Batch 0: Loss 1.1139 (Cls: 0.8219) LR: 0.000061
+Batch 10: Loss 1.0452 (Cls: 0.7970) LR: 0.000061
+Batch 20: Loss 1.1686 (Cls: 0.8865) LR: 0.000060
+Batch 30: Loss 1.0909 (Cls: 0.8018) LR: 0.000060
+Batch 40: Loss 1.2374 (Cls: 0.9500) LR: 0.000060
+Batch 50: Loss 1.0776 (Cls: 0.8011) LR: 0.000059
+Batch 60: Loss 1.0295 (Cls: 0.7189) LR: 0.000059
+Batch 70: Loss 1.1195 (Cls: 0.8268) LR: 0.000058
+Batch 80: Loss 1.0397 (Cls: 0.7688) LR: 0.000058
+Epoch 43: Loss 1.1000, Acc 0.5670
+Val Loss 1.3725, Val Acc 0.5524
+Batch 0: Loss 1.2154 (Cls: 0.9302) LR: 0.000058
+Batch 10: Loss 1.0862 (Cls: 0.8047) LR: 0.000058
+Batch 20: Loss 1.0305 (Cls: 0.7576) LR: 0.000057
+Batch 30: Loss 1.0943 (Cls: 0.7985) LR: 0.000057
+Batch 40: Loss 0.9952 (Cls: 0.7378) LR: 0.000056
+Batch 50: Loss 1.1133 (Cls: 0.8597) LR: 0.000056
+Batch 60: Loss 1.0919 (Cls: 0.8136) LR: 0.000056
+Batch 70: Loss 1.1575 (Cls: 0.8817) LR: 0.000055
+Batch 80: Loss 1.0968 (Cls: 0.8102) LR: 0.000055
+Epoch 44: Loss 1.0872, Acc 0.5706
+Val Loss 1.3620, Val Acc 0.5494
+Batch 0: Loss 1.3758 (Cls: 1.0627) LR: 0.000055
+Batch 10: Loss 1.1219 (Cls: 0.8285) LR: 0.000054
+Batch 20: Loss 1.0072 (Cls: 0.7532) LR: 0.000054
+Batch 30: Loss 0.9133 (Cls: 0.6744) LR: 0.000054
+Batch 40: Loss 1.1405 (Cls: 0.8401) LR: 0.000053
+Batch 50: Loss 1.0568 (Cls: 0.7545) LR: 0.000053
+Batch 60: Loss 1.2204 (Cls: 0.9231) LR: 0.000052
+Batch 70: Loss 1.0549 (Cls: 0.7835) LR: 0.000052
+Batch 80: Loss 1.1716 (Cls: 0.8960) LR: 0.000052
+Epoch 45: Loss 1.0853, Acc 0.5822
+Val Loss 1.4482, Val Acc 0.4635
+Batch 0: Loss 1.1849 (Cls: 0.8734) LR: 0.000052
+Batch 10: Loss 1.1100 (Cls: 0.8211) LR: 0.000051
+Batch 20: Loss 1.1296 (Cls: 0.8359) LR: 0.000051
+Batch 30: Loss 1.2303 (Cls: 0.9328) LR: 0.000050
+Batch 40: Loss 1.1283 (Cls: 0.8653) LR: 0.000050
+Batch 50: Loss 1.1496 (Cls: 0.8379) LR: 0.000050
+Batch 60: Loss 1.1272 (Cls: 0.8547) LR: 0.000049
+Batch 70: Loss 1.0283 (Cls: 0.7557) LR: 0.000049
+Batch 80: Loss 1.0476 (Cls: 0.7459) LR: 0.000049
+Epoch 46: Loss 1.0894, Acc 0.5772
+Val Loss 1.3540, Val Acc 0.5471
+Batch 0: Loss 1.0985 (Cls: 0.8328) LR: 0.000048
+Batch 10: Loss 1.0238 (Cls: 0.7712) LR: 0.000048
+Batch 20: Loss 1.2048 (Cls: 0.8963) LR: 0.000048
+Batch 30: Loss 0.9865 (Cls: 0.7603) LR: 0.000047
+Batch 40: Loss 0.9581 (Cls: 0.7115) LR: 0.000047
+Batch 50: Loss 1.1288 (Cls: 0.8226) LR: 0.000046
+Batch 60: Loss 1.0224 (Cls: 0.7568) LR: 0.000046
+Batch 70: Loss 1.0806 (Cls: 0.8301) LR: 0.000046
+Batch 80: Loss 0.9630 (Cls: 0.7209) LR: 0.000045
+Epoch 47: Loss 1.0841, Acc 0.5780
+Val Loss 1.2961, Val Acc 0.6185
+Batch 0: Loss 1.0398 (Cls: 0.7702) LR: 0.000045
+Batch 10: Loss 1.1882 (Cls: 0.9227) LR: 0.000045
+Batch 20: Loss 1.1196 (Cls: 0.8470) LR: 0.000044
+Batch 30: Loss 1.1736 (Cls: 0.8785) LR: 0.000044
+Batch 40: Loss 1.1332 (Cls: 0.8460) LR: 0.000044
+Batch 50: Loss 1.1134 (Cls: 0.8241) LR: 0.000043
+Batch 60: Loss 1.0171 (Cls: 0.7509) LR: 0.000043
+Batch 70: Loss 1.0633 (Cls: 0.7953) LR: 0.000043
+Batch 80: Loss 1.0880 (Cls: 0.7917) LR: 0.000042
+Epoch 48: Loss 1.0790, Acc 0.5880
+Val Loss 1.2686, Val Acc 0.6178
+Batch 0: Loss 0.9527 (Cls: 0.7125) LR: 0.000042
+Batch 10: Loss 0.9886 (Cls: 0.7426) LR: 0.000042
+Batch 20: Loss 1.1389 (Cls: 0.8209) LR: 0.000041
+Batch 30: Loss 1.1529 (Cls: 0.8487) LR: 0.000041
+Batch 40: Loss 0.9609 (Cls: 0.7016) LR: 0.000040
+Batch 50: Loss 1.0184 (Cls: 0.7750) LR: 0.000040
+Batch 60: Loss 1.1711 (Cls: 0.9019) LR: 0.000040
+Batch 70: Loss 1.0880 (Cls: 0.8302) LR: 0.000039
+Batch 80: Loss 1.0098 (Cls: 0.7552) LR: 0.000039
+Epoch 49: Loss 1.0683, Acc 0.5908
+Val Loss 1.3040, Val Acc 0.5927
+Batch 0: Loss 1.1031 (Cls: 0.8277) LR: 0.000039
+Batch 10: Loss 1.0719 (Cls: 0.7856) LR: 0.000038
+Batch 20: Loss 1.0324 (Cls: 0.7749) LR: 0.000038
+Batch 30: Loss 1.1559 (Cls: 0.8698) LR: 0.000038
+Batch 40: Loss 0.9849 (Cls: 0.7178) LR: 0.000037
+Batch 50: Loss 1.0692 (Cls: 0.7893) LR: 0.000037
+Batch 60: Loss 0.9972 (Cls: 0.7554) LR: 0.000037
+Batch 70: Loss 1.1045 (Cls: 0.8552) LR: 0.000036
+Batch 80: Loss 0.9365 (Cls: 0.6926) LR: 0.000036
+Epoch 50: Loss 1.0421, Acc 0.6091
+Val Loss 1.2786, Val Acc 0.6330
+Batch 0: Loss 1.1069 (Cls: 0.8364) LR: 0.000036
+Batch 10: Loss 1.0637 (Cls: 0.7750) LR: 0.000035
+Batch 20: Loss 0.9637 (Cls: 0.7220) LR: 0.000035
+Batch 30: Loss 1.0945 (Cls: 0.8366) LR: 0.000035
+Batch 40: Loss 0.9698 (Cls: 0.7060) LR: 0.000034
+Batch 50: Loss 0.9812 (Cls: 0.7188) LR: 0.000034
+Batch 60: Loss 1.0820 (Cls: 0.8049) LR: 0.000034
+Batch 70: Loss 1.0557 (Cls: 0.7684) LR: 0.000033
+Batch 80: Loss 1.0214 (Cls: 0.7575) LR: 0.000033
+Epoch 51: Loss 1.0457, Acc 0.6049
+Val Loss 1.3183, Val Acc 0.5965
+Batch 0: Loss 1.1854 (Cls: 0.9072) LR: 0.000033
+Batch 10: Loss 1.0203 (Cls: 0.7756) LR: 0.000032
+Batch 20: Loss 1.0557 (Cls: 0.7773) LR: 0.000032
+Batch 30: Loss 0.9609 (Cls: 0.7157) LR: 0.000032
+Batch 40: Loss 1.0960 (Cls: 0.8303) LR: 0.000031
+Batch 50: Loss 0.9136 (Cls: 0.6971) LR: 0.000031
+Batch 60: Loss 0.9805 (Cls: 0.7190) LR: 0.000031
+Batch 70: Loss 1.1080 (Cls: 0.8417) LR: 0.000030
+Batch 80: Loss 0.9077 (Cls: 0.6956) LR: 0.000030
+Epoch 52: Loss 1.0421, Acc 0.6165
+Val Loss 1.2289, Val Acc 0.6641
+New best model saved with Val Acc: 0.6641
+Batch 0: Loss 1.0874 (Cls: 0.8293) LR: 0.000030
+Batch 10: Loss 1.0771 (Cls: 0.8274) LR: 0.000029
+Batch 20: Loss 1.0573 (Cls: 0.7830) LR: 0.000029
+Batch 30: Loss 0.9824 (Cls: 0.7268) LR: 0.000029
+Batch 40: Loss 0.9434 (Cls: 0.7087) LR: 0.000028
+Batch 50: Loss 1.1579 (Cls: 0.8529) LR: 0.000028
+Batch 60: Loss 1.0857 (Cls: 0.8228) LR: 0.000028
+Batch 70: Loss 1.0322 (Cls: 0.8090) LR: 0.000027
+Batch 80: Loss 0.9992 (Cls: 0.7331) LR: 0.000027
+Epoch 53: Loss 1.0326, Acc 0.6169
+Val Loss 1.3051, Val Acc 0.6026
+Batch 0: Loss 1.0415 (Cls: 0.7701) LR: 0.000027
+Batch 10: Loss 0.9532 (Cls: 0.7029) LR: 0.000026
+Batch 20: Loss 0.9079 (Cls: 0.6688) LR: 0.000026
+Batch 30: Loss 1.0708 (Cls: 0.8210) LR: 0.000026
+Batch 40: Loss 0.9414 (Cls: 0.7058) LR: 0.000025
+Batch 50: Loss 0.9573 (Cls: 0.7164) LR: 0.000025
+Batch 60: Loss 1.0656 (Cls: 0.7930) LR: 0.000025
+Batch 70: Loss 1.0468 (Cls: 0.7791) LR: 0.000025
+Batch 80: Loss 1.0126 (Cls: 0.7478) LR: 0.000024
+Epoch 54: Loss 1.0326, Acc 0.6180
+Val Loss 1.2832, Val Acc 0.6079
+Batch 0: Loss 1.0416 (Cls: 0.7892) LR: 0.000024
+Batch 10: Loss 1.0066 (Cls: 0.7523) LR: 0.000024
+Batch 20: Loss 0.9806 (Cls: 0.7350) LR: 0.000023
+Batch 30: Loss 0.9314 (Cls: 0.6860) LR: 0.000023
+Batch 40: Loss 0.9647 (Cls: 0.7043) LR: 0.000023
+Batch 50: Loss 1.0127 (Cls: 0.7546) LR: 0.000022
+Batch 60: Loss 1.0386 (Cls: 0.7703) LR: 0.000022
+Batch 70: Loss 0.9352 (Cls: 0.6846) LR: 0.000022
+Batch 80: Loss 1.0060 (Cls: 0.7384) LR: 0.000021
+Epoch 55: Loss 0.9871, Acc 0.6462
+Val Loss 1.2432, Val Acc 0.6588
+Batch 0: Loss 1.1169 (Cls: 0.8329) LR: 0.000021
+Batch 10: Loss 1.1669 (Cls: 0.8731) LR: 0.000021
+Batch 20: Loss 0.9725 (Cls: 0.7338) LR: 0.000021
+Batch 30: Loss 0.9689 (Cls: 0.7076) LR: 0.000020
+Batch 40: Loss 1.0387 (Cls: 0.7831) LR: 0.000020
+Batch 50: Loss 1.0532 (Cls: 0.8317) LR: 0.000020
+Batch 60: Loss 1.0004 (Cls: 0.7475) LR: 0.000020
+Batch 70: Loss 0.9288 (Cls: 0.7165) LR: 0.000019
+Batch 80: Loss 1.0197 (Cls: 0.7493) LR: 0.000019
+Epoch 56: Loss 1.0089, Acc 0.6388
+Val Loss 1.2491, Val Acc 0.6444
+Batch 0: Loss 1.0283 (Cls: 0.7638) LR: 0.000019
+Batch 10: Loss 0.9660 (Cls: 0.7155) LR: 0.000018
+Batch 20: Loss 0.9544 (Cls: 0.7257) LR: 0.000018
+Batch 30: Loss 0.9661 (Cls: 0.6951) LR: 0.000018
+Batch 40: Loss 0.9358 (Cls: 0.7033) LR: 0.000018
+Batch 50: Loss 0.9940 (Cls: 0.7420) LR: 0.000017
+Batch 60: Loss 1.0208 (Cls: 0.7550) LR: 0.000017
+Batch 70: Loss 0.9684 (Cls: 0.7260) LR: 0.000017
+Batch 80: Loss 0.9488 (Cls: 0.6783) LR: 0.000016
+Epoch 57: Loss 0.9814, Acc 0.6555
+Val Loss 1.2870, Val Acc 0.6079
+Batch 0: Loss 1.0417 (Cls: 0.7892) LR: 0.000016
+Batch 10: Loss 0.9896 (Cls: 0.7135) LR: 0.000016
+Batch 20: Loss 1.0286 (Cls: 0.7899) LR: 0.000016
+Batch 30: Loss 1.0265 (Cls: 0.7596) LR: 0.000016
+Batch 40: Loss 0.9873 (Cls: 0.7391) LR: 0.000015
+Batch 50: Loss 0.8534 (Cls: 0.6454) LR: 0.000015
+Batch 60: Loss 0.9580 (Cls: 0.7150) LR: 0.000015
+Batch 70: Loss 0.8717 (Cls: 0.6562) LR: 0.000014
+Batch 80: Loss 0.8795 (Cls: 0.6458) LR: 0.000014
+Epoch 58: Loss 0.9843, Acc 0.6523
+Val Loss 1.2679, Val Acc 0.6292
+Batch 0: Loss 0.9855 (Cls: 0.7209) LR: 0.000014
+Batch 10: Loss 1.0477 (Cls: 0.7837) LR: 0.000014
+Batch 20: Loss 0.9829 (Cls: 0.7348) LR: 0.000014
+Batch 30: Loss 0.8590 (Cls: 0.6299) LR: 0.000013
+Batch 40: Loss 1.0423 (Cls: 0.7647) LR: 0.000013
+Batch 50: Loss 0.9886 (Cls: 0.7209) LR: 0.000013
+Batch 60: Loss 1.0124 (Cls: 0.7875) LR: 0.000012
+Batch 70: Loss 1.0584 (Cls: 0.7850) LR: 0.000012
+Batch 80: Loss 0.9806 (Cls: 0.7417) LR: 0.000012
+Epoch 59: Loss 0.9881, Acc 0.6510
+Val Loss 1.2757, Val Acc 0.6102
+Batch 0: Loss 0.9350 (Cls: 0.7072) LR: 0.000012
+Batch 10: Loss 0.9752 (Cls: 0.7127) LR: 0.000012
+Batch 20: Loss 0.8291 (Cls: 0.6026) LR: 0.000011
+Batch 30: Loss 0.9018 (Cls: 0.6477) LR: 0.000011
+Batch 40: Loss 0.9270 (Cls: 0.7173) LR: 0.000011
+Batch 50: Loss 0.8948 (Cls: 0.6603) LR: 0.000011
+Batch 60: Loss 0.9760 (Cls: 0.7343) LR: 0.000010
+Batch 70: Loss 0.9438 (Cls: 0.6957) LR: 0.000010
+Batch 80: Loss 1.0064 (Cls: 0.7657) LR: 0.000010
+Epoch 60: Loss 0.9746, Acc 0.6466
+Val Loss 1.2881, Val Acc 0.6011
+Batch 0: Loss 0.9920 (Cls: 0.7259) LR: 0.000010
+Batch 10: Loss 0.9328 (Cls: 0.6960) LR: 0.000010
+Batch 20: Loss 0.9776 (Cls: 0.7204) LR: 0.000009
+Batch 30: Loss 0.9415 (Cls: 0.7053) LR: 0.000009
+Batch 40: Loss 0.9284 (Cls: 0.7060) LR: 0.000009
+Batch 50: Loss 1.0575 (Cls: 0.8043) LR: 0.000009
+Batch 60: Loss 0.9292 (Cls: 0.6987) LR: 0.000009
+Batch 70: Loss 1.0181 (Cls: 0.7829) LR: 0.000008
+Batch 80: Loss 0.8354 (Cls: 0.5768) LR: 0.000008
+Epoch 61: Loss 0.9842, Acc 0.6546
+Val Loss 1.2234, Val Acc 0.6550
+Batch 0: Loss 0.9130 (Cls: 0.7030) LR: 0.000008
+Batch 10: Loss 0.8948 (Cls: 0.6646) LR: 0.000008
+Batch 20: Loss 0.9656 (Cls: 0.7114) LR: 0.000008
+Batch 30: Loss 1.0122 (Cls: 0.7367) LR: 0.000007
+Batch 40: Loss 1.0403 (Cls: 0.7920) LR: 0.000007
+Batch 50: Loss 0.9352 (Cls: 0.6796) LR: 0.000007
+Batch 60: Loss 1.0455 (Cls: 0.7803) LR: 0.000007
+Batch 70: Loss 0.9020 (Cls: 0.6768) LR: 0.000007
+Batch 80: Loss 1.1149 (Cls: 0.8205) LR: 0.000006
+Epoch 62: Loss 0.9664, Acc 0.6612
+Val Loss 1.2356, Val Acc 0.6520
+Batch 0: Loss 0.9880 (Cls: 0.7414) LR: 0.000006
+Batch 10: Loss 1.0770 (Cls: 0.8025) LR: 0.000006
+Batch 20: Loss 0.9169 (Cls: 0.6945) LR: 0.000006
+Batch 30: Loss 0.9437 (Cls: 0.7057) LR: 0.000006
+Batch 40: Loss 0.9584 (Cls: 0.7043) LR: 0.000006
+Batch 50: Loss 0.8616 (Cls: 0.6511) LR: 0.000006
+Batch 60: Loss 0.9445 (Cls: 0.7100) LR: 0.000005
+Batch 70: Loss 0.8928 (Cls: 0.6796) LR: 0.000005
+Batch 80: Loss 0.9808 (Cls: 0.7192) LR: 0.000005
+Epoch 63: Loss 0.9695, Acc 0.6638
+Val Loss 1.2545, Val Acc 0.6421
+Batch 0: Loss 0.9634 (Cls: 0.7060) LR: 0.000005
+Batch 10: Loss 0.8827 (Cls: 0.6276) LR: 0.000005
+Batch 20: Loss 0.9323 (Cls: 0.6973) LR: 0.000005
+Batch 30: Loss 0.9557 (Cls: 0.7049) LR: 0.000004
+Batch 40: Loss 0.9950 (Cls: 0.7244) LR: 0.000004
+Batch 50: Loss 1.0103 (Cls: 0.7610) LR: 0.000004
+Batch 60: Loss 1.0257 (Cls: 0.7491) LR: 0.000004
+Batch 70: Loss 1.1171 (Cls: 0.8551) LR: 0.000004
+Batch 80: Loss 1.0285 (Cls: 0.7732) LR: 0.000004
+Epoch 64: Loss 0.9634, Acc 0.6749
+Val Loss 1.2404, Val Acc 0.6436
+Batch 0: Loss 0.9394 (Cls: 0.7290) LR: 0.000004
+Batch 10: Loss 0.9907 (Cls: 0.7354) LR: 0.000003
+Batch 20: Loss 0.9121 (Cls: 0.6987) LR: 0.000003
+Batch 30: Loss 0.9019 (Cls: 0.6708) LR: 0.000003
+Batch 40: Loss 0.9909 (Cls: 0.7156) LR: 0.000003
+Batch 50: Loss 1.0353 (Cls: 0.7862) LR: 0.000003
+Batch 60: Loss 1.1112 (Cls: 0.8254) LR: 0.000003
+Batch 70: Loss 0.9598 (Cls: 0.7234) LR: 0.000003
+Batch 80: Loss 0.9591 (Cls: 0.7230) LR: 0.000003
+Epoch 65: Loss 0.9808, Acc 0.6536
+Val Loss 1.2548, Val Acc 0.6368
+Batch 0: Loss 0.9743 (Cls: 0.7125) LR: 0.000003
+Batch 10: Loss 1.0370 (Cls: 0.7858) LR: 0.000002
+Batch 20: Loss 0.9869 (Cls: 0.7356) LR: 0.000002
+Batch 30: Loss 0.7945 (Cls: 0.5942) LR: 0.000002
+Batch 40: Loss 0.9084 (Cls: 0.6802) LR: 0.000002
+Batch 50: Loss 0.9228 (Cls: 0.6704) LR: 0.000002
+Batch 60: Loss 0.9254 (Cls: 0.6975) LR: 0.000002
+Batch 70: Loss 0.9734 (Cls: 0.7427) LR: 0.000002
+Batch 80: Loss 0.9967 (Cls: 0.7351) LR: 0.000002
+Epoch 66: Loss 0.9658, Acc 0.6748
+Val Loss 1.2392, Val Acc 0.6421
+Batch 0: Loss 0.9560 (Cls: 0.6975) LR: 0.000002
+Batch 10: Loss 0.9149 (Cls: 0.6649) LR: 0.000002
+Batch 20: Loss 1.0562 (Cls: 0.8115) LR: 0.000001
+Batch 30: Loss 0.9861 (Cls: 0.7381) LR: 0.000001
+Batch 40: Loss 1.0960 (Cls: 0.8217) LR: 0.000001
+Batch 50: Loss 0.9549 (Cls: 0.6898) LR: 0.000001
+Batch 60: Loss 0.9769 (Cls: 0.7268) LR: 0.000001
+Batch 70: Loss 0.9894 (Cls: 0.7361) LR: 0.000001
+Batch 80: Loss 1.0535 (Cls: 0.7831) LR: 0.000001
+Epoch 67: Loss 0.9595, Acc 0.6714
+Val Loss 1.2412, Val Acc 0.6444
+Batch 0: Loss 0.8734 (Cls: 0.6190) LR: 0.000001
+Batch 10: Loss 0.9237 (Cls: 0.6913) LR: 0.000001
+Batch 20: Loss 0.9561 (Cls: 0.7180) LR: 0.000001
+Batch 30: Loss 0.9358 (Cls: 0.7006) LR: 0.000001
+Batch 40: Loss 0.9518 (Cls: 0.6946) LR: 0.000001
+Batch 50: Loss 0.9555 (Cls: 0.7107) LR: 0.000001
+Batch 60: Loss 1.0467 (Cls: 0.7791) LR: 0.000001
+Batch 70: Loss 0.9718 (Cls: 0.7155) LR: 0.000000
+Batch 80: Loss 0.9196 (Cls: 0.7168) LR: 0.000000
+Epoch 68: Loss 0.9500, Acc 0.6775
+Val Loss 1.2479, Val Acc 0.6436
+Batch 0: Loss 0.8562 (Cls: 0.6402) LR: 0.000000
+Batch 10: Loss 0.8742 (Cls: 0.6526) LR: 0.000000
+Batch 20: Loss 0.8887 (Cls: 0.6639) LR: 0.000000
+Batch 30: Loss 0.9680 (Cls: 0.7219) LR: 0.000000
+Batch 40: Loss 0.8947 (Cls: 0.6756) LR: 0.000000
+Batch 50: Loss 0.8245 (Cls: 0.6065) LR: 0.000000
+Batch 60: Loss 1.1593 (Cls: 0.8898) LR: 0.000000
+Batch 70: Loss 1.0013 (Cls: 0.7359) LR: 0.000000
+Batch 80: Loss 0.9637 (Cls: 0.7277) LR: 0.000000
+Epoch 69: Loss 0.9552, Acc 0.6801
+Val Loss 1.2487, Val Acc 0.6429
+Batch 0: Loss 1.0587 (Cls: 0.8011) LR: 0.000000
+Batch 10: Loss 1.1537 (Cls: 0.8788) LR: 0.000000
+Batch 20: Loss 0.9873 (Cls: 0.7349) LR: 0.000000
+Batch 30: Loss 0.9140 (Cls: 0.7054) LR: 0.000000
+Batch 40: Loss 0.9331 (Cls: 0.6979) LR: 0.000000
+Batch 50: Loss 0.9330 (Cls: 0.7117) LR: 0.000000
+Batch 60: Loss 0.8463 (Cls: 0.6337) LR: 0.000000
+Batch 70: Loss 1.0071 (Cls: 0.7599) LR: 0.000000
+Batch 80: Loss 0.9227 (Cls: 0.6798) LR: 0.000000
+Epoch 70: Loss 0.9614, Acc 0.6633
+Val Loss 1.2488, Val Acc 0.6421
+Running Test Evaluation...
+/root/shared-nvme/fire/src/training/train.py:349: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(best_model_path))
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/fire/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/fire/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/root/shared-nvme/fire/src/training/train.py", line 380, in <module>
+    main(args.config, args.exp_name)
+  File "/root/shared-nvme/fire/src/training/train.py", line 349, in main
+    model.load_state_dict(torch.load(best_model_path))
+  File "/root/miniconda3/envs/fire/lib/python3.10/site-packages/torch/nn/modules/module.py", line 2584, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for FireDamageClassifier:
+	While copying the parameter named "sentence_encoder.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.word_embeddings.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.word_embeddings.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.position_embeddings.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.position_embeddings.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.token_type_embeddings.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.embeddings.token_type_embeddings.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.0.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.1.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.2.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.3.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.4.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.self.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.self.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.attention.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.intermediate.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.intermediate.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.intermediate.intermediate_act_fn.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.intermediate.intermediate_act_fn.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.output.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.encoder.layer.5.output.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.pooler.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.pooler.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.pooler.activation.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.0.auto_model.pooler.activation.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.1.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.1.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.2.total_ops", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).
+	While copying the parameter named "sentence_encoder.2.total_params", whose dimensions in the model are torch.Size([1]) and whose dimensions in the checkpoint are torch.Size([1]), an exception occurred : ('Inplace update to inference tensor outside InferenceMode is not allowed.You can make a clone to get a normal tensor before doing inplace update.See https://github.com/pytorch/rfcs/pull/17 for more details.',).

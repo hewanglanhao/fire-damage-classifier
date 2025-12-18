@@ -1,9 +1,12 @@
+import os
+import json
 import torch
 import torch.nn as nn
 import timm
 from .components.encoders import CNNEncoder, ViTEncoder
 from .components.decoders import TextDecoder, ImageDecoder
 from .components.heads import HierarchicalHead
+from train_sentence_encoder.model import MiniLMEncoder
 
 
 class TextVAE(nn.Module):
@@ -12,15 +15,17 @@ class TextVAE(nn.Module):
         encoder_type="cnn",
         latent_dim=512,
         vocab_size=1000,
+        vit_model_name="vit_base_patch16_224",
+        cnn_model_name="resnet18",
         dropout=0.0,
         drop_path_rate=0.0,
     ):
         super().__init__()
         if encoder_type == "cnn":
-            self.encoder = CNNEncoder(model_name="resnet18", drop_rate=dropout)
+            self.encoder = CNNEncoder(model_name=cnn_model_name, drop_rate=dropout)
         else:
             self.encoder = ViTEncoder(
-                model_name="vit_base_patch16_224",
+                model_name=vit_model_name,
                 drop_rate=dropout,
                 drop_path_rate=drop_path_rate,
             )
@@ -57,10 +62,16 @@ class TextVAE(nn.Module):
 class ImageVAE(nn.Module):
     """Method A: VAE for Image"""
 
-    def __init__(self, latent_dim=512, dropout=0.0, drop_path_rate=0.0):
+    def __init__(
+        self,
+        latent_dim=512,
+        model_name="vit_base_patch16_224",
+        dropout=0.0,
+        drop_path_rate=0.0,
+    ):
         super().__init__()
         self.encoder = ViTEncoder(
-            model_name="vit_base_patch16_224",
+            model_name=model_name,
             drop_rate=dropout,
             drop_path_rate=drop_path_rate,
         )
@@ -87,10 +98,16 @@ class ImageVAE(nn.Module):
 class ImageAlignment(nn.Module):
     """Method B: CLIP-like Alignment"""
 
-    def __init__(self, latent_dim=512, dropout=0.0, drop_path_rate=0.0):
+    def __init__(
+        self,
+        latent_dim=512,
+        model_name="vit_base_patch16_224",
+        dropout=0.0,
+        drop_path_rate=0.0,
+    ):
         super().__init__()
         self.encoder = ViTEncoder(
-            model_name="vit_base_patch16_224",
+            model_name=model_name,
             drop_rate=dropout,
             drop_path_rate=drop_path_rate,
         )
@@ -134,6 +151,20 @@ class FireDamageClassifier(nn.Module):
         self.num_classes = config["model"]["num_classes"]
         self.vocab_size = config["data"]["vocab_size"]
         self.method_option = config["model"]["method_option"]
+        self.use_sentence_encoder = config["model"].get("use_sentence_encoder", False)
+        self.sentence_encoder_name = config["model"].get(
+            "sentence_encoder_name", "sentence-transformers/all-MiniLM-L6-v2"
+        )
+        self.align_text_source = config["model"].get("align_text_source", "fine")
+        self.sentence_pretrained = config["model"].get("sentence_pretrained", True)
+        self.freeze_sentence_encoder = config["model"].get(
+            "freeze_sentence_encoder", self.sentence_pretrained
+        )
+        # Where to run sentence encoder (helps avoid CUDA OOM). Typical: "cpu" when frozen.
+        self.sentence_encoder_device = config["model"].get(
+            "sentence_encoder_device", "cpu" if self.freeze_sentence_encoder else None
+        )
+        self.sentence_encoder_path = config["model"].get("sentence_encoder_name", None)
 
         # Configurable parts
         self.use_coarse = config["model"].get("use_coarse", True)
@@ -155,6 +186,102 @@ class FireDamageClassifier(nn.Module):
         # Regularization params
         self.dropout_rate = config["training"].get("dropout", 0.0)
         self.drop_path_rate = config["training"].get("drop_path_rate", 0.0)
+        self.backbone = config["model"].get("backbone", "vit_base_patch16_224")
+
+        # Optional sentence-level encoder (e.g., SentenceTransformer)
+        # NOTE: When `sentence_encoder_device` is "cpu", we intentionally keep sentence encoders
+        # out of the registered module tree (store in __dict__) so `model.to("cuda")` will not
+        # try to move them onto GPU and trigger CUDA OOM.
+        self.sentence_encoder = None
+        self.sentence_fallback = None
+        self.sentence_tokenizer = None
+        self.sentence_proj = None
+        if self.use_sentence_encoder:
+            if self.sentence_pretrained:
+                try:
+                    from sentence_transformers import SentenceTransformer  # type: ignore
+                except Exception as e:  # noqa: BLE001
+                    raise ImportError(
+                        "sentence-transformers is required for use_sentence_encoder=True "
+                        "but could not be imported. Please install/upgrade it (and its "
+                        "dependencies such as pyarrow/datasets) or set use_sentence_encoder=False.\n"
+                        f"Original error: {e}"
+                    ) from e
+
+                st_device = self.sentence_encoder_device
+                # SentenceTransformer by default moves itself to CUDA when available; force device if provided.
+                sentence_encoder = (
+                    SentenceTransformer(self.sentence_encoder_name, device=st_device)
+                    if st_device is not None
+                    else SentenceTransformer(self.sentence_encoder_name)
+                )
+                try:
+                    sent_dim = int(sentence_encoder.get_sentence_embedding_dimension())
+                except Exception:
+                    sent_dim = self.latent_dim
+                self.sentence_proj = nn.Identity() if sent_dim == self.latent_dim else nn.Linear(sent_dim, self.latent_dim)
+
+                if self.freeze_sentence_encoder:
+                    for p in sentence_encoder.parameters():
+                        p.requires_grad = False
+                    sentence_encoder.eval()
+
+                if st_device == "cpu":
+                    self.__dict__["sentence_encoder"] = sentence_encoder
+                else:
+                    self.sentence_encoder = sentence_encoder
+            else:
+                # Load custom encoder trained by train_sentence_encoder (MiniLMEncoder)
+                if self.sentence_encoder_path is None:
+                    raise ValueError("sentence_encoder_name/path must be provided when sentence_pretrained=False")
+                ckpt_path = os.path.join(self.sentence_encoder_path, "best_model.pt")
+                if not os.path.exists(ckpt_path):
+                    ckpt_path = os.path.join(self.sentence_encoder_path, "last_model.pt")
+                if not os.path.exists(ckpt_path):
+                    raise FileNotFoundError(f"Cannot find sentence encoder checkpoint at {self.sentence_encoder_path}")
+
+                checkpoint = torch.load(ckpt_path, map_location="cpu")
+                cfg = checkpoint.get("config", {})
+                vocab_path = os.path.join(self.sentence_encoder_path, "tokenizer.json")
+                if not os.path.exists(vocab_path):
+                    raise FileNotFoundError(f"tokenizer.json not found in {self.sentence_encoder_path}")
+                with open(vocab_path, "r", encoding="utf-8") as f:
+                    tok_data = json.load(f)
+
+                vocab_size = len(tok_data["token_to_id"])
+                max_len = tok_data["max_length"]
+                hidden_size = cfg.get("hidden_size", self.latent_dim)
+                self.sentence_hidden_size = hidden_size
+                self.sentence_tokenizer = tok_data
+                sentence_fallback = MiniLMEncoder(
+                    vocab_size=vocab_size,
+                    max_length=max_len,
+                    hidden_size=hidden_size,
+                    num_layers=cfg.get("num_layers", 6),
+                    num_heads=cfg.get("num_heads", 8),
+                    dim_feedforward=cfg.get("dim_feedforward", 1024),
+                    dropout=cfg.get("dropout", 0.1),
+                    pool_method=cfg.get("pool_method", "mean"),
+                )
+                sentence_fallback.load_state_dict(checkpoint["model_state_dict"] if "model_state_dict" in checkpoint else checkpoint)
+                if hidden_size != self.latent_dim:
+                    self.sentence_proj = nn.Linear(hidden_size, self.latent_dim)
+                else:
+                    self.sentence_proj = nn.Identity()
+
+                if self.freeze_sentence_encoder:
+                    for p in sentence_fallback.parameters():
+                        p.requires_grad = False
+                    sentence_fallback.eval()
+
+                # Put the (possibly frozen) sentence encoder on the requested device to avoid CUDA OOM.
+                if self.sentence_encoder_device is not None:
+                    sentence_fallback.to(self.sentence_encoder_device)
+
+                if self.sentence_encoder_device == "cpu":
+                    self.__dict__["sentence_fallback"] = sentence_fallback
+                else:
+                    self.sentence_fallback = sentence_fallback
 
         # Model 1 - Coarse
         if self.use_coarse:
@@ -162,6 +289,7 @@ class FireDamageClassifier(nn.Module):
                 encoder_type=self.coarse_encoder_type,
                 latent_dim=self.latent_dim,
                 vocab_size=self.vocab_size,
+                vit_model_name=self.backbone,
                 dropout=self.dropout_rate,
                 drop_path_rate=self.drop_path_rate,
             )
@@ -172,6 +300,7 @@ class FireDamageClassifier(nn.Module):
                 encoder_type=self.fine_encoder_type,
                 latent_dim=self.latent_dim,
                 vocab_size=self.vocab_size,
+                vit_model_name=self.backbone,
                 dropout=self.dropout_rate,
                 drop_path_rate=self.drop_path_rate,
             )
@@ -180,12 +309,14 @@ class FireDamageClassifier(nn.Module):
         if self.method_option == "vae":
             self.image_model = ImageVAE(
                 latent_dim=self.latent_dim,
+                model_name=self.backbone,
                 dropout=self.dropout_rate,
                 drop_path_rate=self.drop_path_rate,
             )
         elif self.method_option == "alignment":
             self.image_model = ImageAlignment(
                 latent_dim=self.latent_dim,
+                model_name=self.backbone,
                 dropout=self.dropout_rate,
                 drop_path_rate=self.drop_path_rate,
             )
@@ -210,7 +341,36 @@ class FireDamageClassifier(nn.Module):
             self.head_dim, self.num_classes, dropout=self.dropout_rate
         )
 
-    def forward(self, img, coarse_text=None, fine_text=None):
+    def _encode_sentence_fallback(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
+        """
+        Compute sentence embedding for MiniLMEncoder without building large MLM logits.
+        This mirrors `train_sentence_encoder/model.py` but skips `mlm_head`.
+        """
+        positions = torch.arange(input_ids.size(1), device=input_ids.device).unsqueeze(0)
+        x = self.sentence_fallback.token_embeddings(input_ids) + self.sentence_fallback.position_embeddings(positions)
+        x = self.sentence_fallback.embed_dropout(self.sentence_fallback.embed_layer_norm(x))
+
+        padding_mask = attention_mask == 0
+        sequence_output = self.sentence_fallback.encoder(x, src_key_padding_mask=padding_mask)
+
+        if self.sentence_fallback.pool_method == "cls":
+            sentence_embedding = sequence_output[:, 0]
+        else:
+            mask = attention_mask.unsqueeze(-1)
+            summed = (sequence_output * mask).sum(dim=1)
+            denom = mask.sum(dim=1).clamp(min=1)
+            sentence_embedding = summed / denom
+
+        return sentence_embedding
+
+    def forward(
+        self,
+        img,
+        coarse_text=None,
+        fine_text=None,
+        coarse_text_raw=None,
+        fine_text_raw=None,
+    ):
         outputs = {}
         latents = []
 
@@ -258,6 +418,80 @@ class FireDamageClassifier(nn.Module):
             outputs.update(
                 {"z_fine": None, "mu_f": None, "logvar_f": None, "recon_f": None}
             )
+
+        # Optional sentence-transformer text embedding (coarse or fine raw text)
+        z_sentence = None
+        if self.use_sentence_encoder:
+            text_list = None
+            if self.align_text_source == "fine" and fine_text_raw is not None:
+                text_list = fine_text_raw
+            if text_list is None and coarse_text_raw is not None:
+                text_list = coarse_text_raw
+
+            if self.sentence_encoder is not None and text_list is not None:
+                if self.freeze_sentence_encoder:
+                    self.sentence_encoder.eval()
+
+                try:
+                    if self.freeze_sentence_encoder:
+                        with torch.no_grad():
+                            z_sentence = self.sentence_encoder.encode(
+                                list(text_list),
+                                convert_to_tensor=True,
+                                device=self.sentence_encoder_device or img.device,
+                                show_progress_bar=False,
+                            )
+                    else:
+                        z_sentence = self.sentence_encoder.encode(
+                            list(text_list),
+                            convert_to_tensor=True,
+                            device=self.sentence_encoder_device or img.device,
+                            show_progress_bar=False,
+                        )
+                except Exception as e:
+                    print(f"Sentence encoder failed: {e}")
+                    z_sentence = None
+                if z_sentence is not None and self.sentence_proj is not None:
+                    # Some SentenceTransformer backends return "inference tensors" (created under
+                    # torch.inference_mode). Autograd can't save them for backward through our
+                    # trainable projection, so we materialize a normal tensor here.
+                    if self.freeze_sentence_encoder:
+                        z_sentence = z_sentence.detach().clone()
+                    # Move sentence embeddings to the same device as the rest of the model
+                    z_sentence = z_sentence.to(img.device)
+                    z_sentence = self.sentence_proj(z_sentence)
+            elif self.sentence_fallback is not None and self.sentence_tokenizer is not None and text_list is not None:
+                # Tokenize raw text using saved tokenizer.json
+                token_to_id = self.sentence_tokenizer["token_to_id"]
+                pad_id = token_to_id["[PAD]"]
+                cls_id = token_to_id["[CLS]"]
+                sep_id = token_to_id["[SEP]"]
+                max_len = self.sentence_tokenizer["max_length"]
+
+                def encode_one(txt: str):
+                    toks = txt.strip().lower().split() if txt else []
+                    ids = [cls_id] + [token_to_id.get(t, token_to_id["[UNK]"]) for t in toks][: max_len - 2] + [sep_id]
+                    if len(ids) < max_len:
+                        ids += [pad_id] * (max_len - len(ids))
+                    else:
+                        ids = ids[:max_len]
+                    attn = [1 if i != pad_id else 0 for i in ids]
+                    return ids, attn
+
+                ids_list, attn_list = zip(*(encode_one(t) for t in text_list))
+                enc_device = self.sentence_encoder_device or img.device
+                input_ids = torch.tensor(ids_list, dtype=torch.long, device=enc_device)
+                attention_mask = torch.tensor(attn_list, dtype=torch.long, device=enc_device)
+                if self.freeze_sentence_encoder:
+                    with torch.no_grad():
+                        z_sentence = self._encode_sentence_fallback(input_ids, attention_mask)
+                else:
+                    z_sentence = self._encode_sentence_fallback(input_ids, attention_mask)
+                z_sentence = z_sentence.to(img.device)
+                if self.sentence_proj is not None:
+                    z_sentence = self.sentence_proj(z_sentence)
+
+            outputs["z_sentence"] = z_sentence
 
         # Image Model
         z_img, mu_i, logvar_i, recon_i = self.image_model(img)

@@ -11,12 +11,27 @@ class CombinedLoss(nn.Module):
         self.lambda_cls = config["training"]["lambda_cls"]
         self.lambda_vae = config["training"]["lambda_vae"]
         self.lambda_align = config["training"]["lambda_align"]
+        self.align_temperature = float(config["training"].get("align_temperature", 0.07))
+        self.use_sentence_encoder = config["model"].get("use_sentence_encoder", False)
 
         self.cls_loss = nn.CrossEntropyLoss()
         self.text_recon_loss = nn.CrossEntropyLoss(
             ignore_index=0
         )  # Assuming 0 is padding
         self.img_recon_loss = nn.MSELoss()
+
+    def contrastive_loss(self, z_img, z_text):
+        """
+        Symmetric InfoNCE-style contrastive loss over a batch.
+        """
+        z_img = F.normalize(z_img, dim=1)
+        z_text = F.normalize(z_text, dim=1)
+        logits = torch.matmul(z_img, z_text.t()) / self.align_temperature  # (B, B)
+        labels = torch.arange(logits.size(0), device=logits.device)
+
+        loss_i2t = F.cross_entropy(logits, labels)
+        loss_t2i = F.cross_entropy(logits.t(), labels)
+        return 0.5 * (loss_i2t + loss_t2i)
 
     def vae_loss(self, recon, target, mu, logvar, mode="text"):
         B = mu.size(0)
@@ -76,24 +91,23 @@ class CombinedLoss(nn.Module):
                 )
         else:
             # Method: Alignment Loss
-            # Align z_img with z_fine (Thinking Text Latent)
-            # If z_fine is None (e.g. only coarse used), we can't align with it.
-            # Fallback to coarse or skip?
-            # Assuming if alignment is chosen, we must have at least one text source.
+            # Prefer sentence-transformer alignment if available, otherwise fall back to z_fine/z_coarse cosine loss.
+            z_img = outputs.get("z_img")
+            z_sentence = outputs.get("z_sentence")
 
-            z_text = None
-            if outputs.get("z_fine") is not None:
-                z_text = outputs["z_fine"]
-            elif outputs.get("z_coarse") is not None:
-                z_text = outputs["z_coarse"]
+            if self.use_sentence_encoder and z_sentence is not None and z_img is not None:
+                loss_m2 = self.contrastive_loss(z_img, z_sentence)
+            else:
+                z_text = None
+                if outputs.get("z_fine") is not None:
+                    z_text = outputs["z_fine"]
+                elif outputs.get("z_coarse") is not None:
+                    z_text = outputs["z_coarse"]
 
-            if z_text is not None and outputs.get("z_img") is not None:
-                # Cosine Embedding Loss or MSE
-                # Normalize vectors
-                z_img = F.normalize(outputs["z_img"], dim=1)
-                z_text = F.normalize(z_text, dim=1)
-
-                loss_m2 = 1 - F.cosine_similarity(z_img, z_text).mean()
+                if z_text is not None and z_img is not None:
+                    z_img = F.normalize(z_img, dim=1)
+                    z_text = F.normalize(z_text, dim=1)
+                    loss_m2 = 1 - F.cosine_similarity(z_img, z_text).mean()
 
         total_loss = (
             self.lambda_cls * loss_cls

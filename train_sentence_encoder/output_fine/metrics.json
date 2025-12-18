@@ -1,0 +1,27 @@
+{
+  "val_loss": 5.551500026996319,
+  "test_loss": 5.554938169626089,
+  "test_perplexity": 258.5109801958549,
+  "config": {
+    "annotations_path": "src/data/annotations.jsonl",
+    "text_field": "fine",
+    "output_dir": "train_sentence_encoder/output_fine",
+    "vocab_size": 20000,
+    "max_length": 96,
+    "hidden_size": 512,
+    "num_layers": 6,
+    "num_heads": 8,
+    "dim_feedforward": 1024,
+    "dropout": 0.1,
+    "batch_size": 64,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "epochs": 10,
+    "mlm_prob": 0.15,
+    "val_ratio": 0.1,
+    "test_ratio": 0.1,
+    "num_workers": 2,
+    "seed": 42,
+    "pool_method": "mean"
+  }
+}
